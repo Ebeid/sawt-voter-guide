@@ -57,5 +57,14 @@ To rebuild after editing:
 python3 src/build.py
 ```
 
-Then commit `index.html` along with your source changes. GitHub Pages serves
-the repository root from the `main` branch.
+Then commit `index.html` along with your source changes.
+
+GitHub Pages publishes the **`gh-pages`** branch. Keep it in step with `main`:
+
+```sh
+git push origin main
+git push origin main:gh-pages
+```
+
+(Or, in **Settings → Pages**, switch the source to `main` / root and delete
+`gh-pages`; then a push to `main` is enough.)
