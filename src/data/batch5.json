@@ -1,0 +1,36 @@
+[
+{"st":"TN","name":"Tennessee","items":[
+["F","Justin Pearson","U.S. House, TN-9","E"],
+["S","Justin Jones","State House, District 52","E"]
+]},
+{"st":"VA","name":"Virginia","items":[
+["F","Jennifer McClellan","U.S. House, VA-4","P"],
+["F","Jen Kiggans","U.S. House, VA-4","O"],
+["F","Tom Perriello","U.S. House, VA-5","E"],
+["F","John McGuire","U.S. House, VA-5","O"],
+["F","Beth Macy","U.S. House, VA-6","E"],
+["F","Ben Cline","U.S. House, VA-6","O"],
+["F","Don Beyer","U.S. House, VA-8","P"],
+["F","Morgan Griffith","U.S. House, VA-8","O"],
+["L","Danny Clawson","Roanoke City Council","E"],
+["L","Raekwon Moore","Roanoke City Council","E"],
+["L","Vivian Y. Sanchez-Jones","Roanoke City Council","E"]
+]},
+{"st":"WA","name":"Washington","items":[
+["F","John Duresky","U.S. House, WA-4","E"],
+["F","Pramila Jayapal","U.S. House, WA-7","E"],
+["S","Ian Birk","State Supreme Court, Position 4","E"],
+["S","Sharlett Mena","State Senate, LD 29","E"],
+["S","Claire Wilson","State Senate, LD 30","P"],
+["S","Tina Orwall","State Senate, LD 33","E"],
+["S","Emily Alvarado","State Senate, LD 34","E"],
+["S","Noel Frame","State Senate, LD 36","E"],
+["S","Chipalo Street","State Senate, LD 37","E"],
+["S","June Robinson","State Senate, LD 38","P"],
+["S","Hannah Sabio-Howell","State Senate, LD 43","E"],
+["S","Claudia Kauffman","State Senate, LD 47","E"],
+["S","Vandana Slatter","State Senate, LD 48","E"],
+["S","Davina Duerr","State House, LD 1, Position 1","E"],
+["S","Patrick Stickney","State House, LD 29, Position 2","E"]
+]}
+]

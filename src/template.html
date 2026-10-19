@@ -1,0 +1,1440 @@
+<title>Sawt Ballot Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;700&display=swap">
+<style>
+/* Layout: one mobile column (max 720px). Lapis header band with a khatam-star pattern; four views (step-by-step ballot, all races, my list, about); fixed bottom tab bar. */
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#152033; --muted:#566275; --line:#D8DFEA;
+  --lapis:#23418C; --lapis-ink:#FFFFFF; --lapis-soft:#E3E9F7;
+  --band:#1A3270; --band-ink:#F6EFDC; --band-muted:#C9D2EA; --band-line:rgba(246,239,220,.35); --gold:#D3A63C; --on-gold:#1A1406;
+  --good:#1A7743; --on-good:#FFFFFF; --good-soft:#E0F1E7;
+  --pref:#0A6A7E; --pref-soft:#DDEFF3;
+  --bad:#B42318; --bad-soft:#FBE3E0;
+  --won:#7A5600; --won-soft:#F6ECD2;
+  --none:#566275; --none-soft:#E9EDF3;
+  --focus:#2F6BFF;
+  --font-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-latin:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --lh:1.5;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D131F; --surface:#151D2C; --ink:#E7ECF4; --muted:#9CA8BA; --line:#283347;
+    --lapis:#8EAAF0; --lapis-ink:#0D131F; --lapis-soft:#1D2A47;
+    --band:#111C3B; --band-ink:#F3EAD2; --band-muted:#AEB9D6; --band-line:rgba(243,234,210,.3); --gold:#D9B04F; --on-gold:#1A1406;
+    --good:#5CCB8A; --on-good:#08150E; --good-soft:#143323;
+    --pref:#6FD0E3; --pref-soft:#123139;
+    --bad:#FF8F84; --bad-soft:#3B1916;
+    --won:#E8C266; --won-soft:#332912;
+    --none:#9CA8BA; --none-soft:#222C3D;
+    --focus:#8EAAF0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D131F; --surface:#151D2C; --ink:#E7ECF4; --muted:#9CA8BA; --line:#283347;
+  --lapis:#8EAAF0; --lapis-ink:#0D131F; --lapis-soft:#1D2A47;
+  --band:#111C3B; --band-ink:#F3EAD2; --band-muted:#AEB9D6; --band-line:rgba(243,234,210,.3); --gold:#D9B04F; --on-gold:#1A1406;
+  --good:#5CCB8A; --on-good:#08150E; --good-soft:#143323;
+  --pref:#6FD0E3; --pref-soft:#123139;
+  --bad:#FF8F84; --bad-soft:#3B1916;
+  --won:#E8C266; --won-soft:#332912;
+  --none:#9CA8BA; --none-soft:#222C3D;
+  --focus:#8EAAF0;
+  color-scheme:dark;
+}
+/* per-script typefaces */
+:root[lang="fa"]{--font-body:"Vazirmatn","IBM Plex Sans Arabic",system-ui,sans-serif;--font-display:"Vazirmatn","IBM Plex Sans Arabic",system-ui,sans-serif}
+:root[lang="ur"]{--font-body:"Noto Nastaliq Urdu","IBM Plex Sans Arabic",system-ui,sans-serif;--font-display:"Noto Nastaliq Urdu","IBM Plex Sans Arabic",system-ui,sans-serif;--lh:2.05}
+:root[lang="bn"]{--font-body:"Hind Siliguri",system-ui,sans-serif;--font-display:"Hind Siliguri",system-ui,sans-serif;--lh:1.6}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:var(--lh);padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+button,input,select{font:inherit;color:inherit}
+a{color:var(--lapis)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+.wrap{max-width:752px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+bdi{unicode-bidi:isolate}
+.en{font-family:var(--font-latin);line-height:1.45}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Header band */
+.band{background-color:var(--band);color:var(--band-ink);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23D3A63C' stroke-opacity='.22' stroke-width='1'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Cpath d='M0 28h6M50 28h6M28 0v6M28 50v6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:56px 56px}
+.band .wrap{padding-block:16px 18px;display:grid;gap:12px}
+.brand-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:12px;align-items:center;min-width:0}
+.mark{width:42px;height:42px;flex:none;color:var(--gold)}
+.wordmark{font-family:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:700;font-size:30px;line-height:1.1;letter-spacing:.01em;display:flex;align-items:baseline;gap:10px}
+.wordmark .ar{font-size:28px;color:var(--gold)}
+.tagline{margin:4px 0 0;color:var(--band-muted);font-size:14px;line-height:1.45}
+:root[lang="ur"] .tagline{line-height:2}
+.langsel{position:relative;flex:none;display:flex;align-items:center}
+.langsel svg{position:absolute;inset-inline-start:10px;width:16px;height:16px;pointer-events:none;color:var(--band-ink)}
+.langsel::after{content:"";position:absolute;inset-inline-end:12px;top:50%;width:6px;height:6px;border-right:2px solid var(--band-ink);border-bottom:2px solid var(--band-ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.langsel select{appearance:none;-webkit-appearance:none;border:1px solid var(--band-line);background:transparent;color:var(--band-ink);border-radius:999px;padding-block:6px;padding-inline:32px 28px;font-family:var(--font-latin);font-size:14px;font-weight:600;min-height:38px;cursor:pointer;max-width:150px}
+.langsel select option{color:var(--ink);background:var(--surface)}
+.eday{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:14px}
+.eday .when{font-weight:600}
+.eday .count{background:var(--gold);color:var(--on-gold);border-radius:999px;padding:2px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* Shared pieces */
+.page{padding-block:20px 12px;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.page-h{margin:0;font-family:var(--font-display);font-weight:500;font-size:26px;line-height:1.3;text-wrap:balance}
+.intro{margin:-6px 0 0;color:var(--muted);font-size:15px;max-width:60ch}
+.lbl{font-size:13px;font-weight:600;color:var(--muted)}
+:root[lang="en"] .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
+:root[lang="en"] .chip{font-size:12px;letter-spacing:.02em}
+:root[lang="ur"] .chip{line-height:2.1;padding-block:0}
+.s-e{background:var(--good);color:var(--on-good)}
+.s-p{background:var(--pref-soft);color:var(--pref)}
+.s-o{background:var(--bad-soft);color:var(--bad)}
+.s-w{background:var(--won-soft);color:var(--won)}
+.s-x{background:var(--none-soft);color:var(--none)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--lapis);background:var(--lapis);color:var(--lapis-ink);border-radius:12px;padding:10px 16px;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;min-height:46px}
+.btn.ghost{background:var(--surface);color:var(--lapis);border-color:var(--line)}
+.btn.danger{background:var(--surface);color:var(--bad);border-color:var(--line)}
+.btn.danger.solid{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn svg{width:18px;height:18px;flex:none}
+.linkbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:500;text-decoration:none;color:var(--lapis);background:var(--surface)}
+.linkbtn:hover{background:var(--lapis-soft)}
+.linkbtn svg{width:14px;height:14px;flex:none}
+:root[dir="rtl"] .linkbtn svg, :root[dir="rtl"] .btn .flip{transform:scaleX(-1)}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.fine{margin:0;color:var(--muted);font-size:13px}
+.msg{margin:0;padding:12px;border-radius:10px;background:var(--none-soft);font-size:15px}
+.cands{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cand{display:flex;align-items:center;justify-content:space-between;gap:6px 10px;flex-wrap:wrap}
+.cname{font-size:16px;min-width:0}
+.cand.o .cname,.cand.x .cname{color:var(--muted)}
+.note{margin:0;font-size:13px;color:var(--muted)}
+.desc{margin:0;font-size:14px;color:var(--muted);line-height:1.45}
+.loc{margin:0;font-size:13px;color:var(--muted)}
+
+/* Step by step */
+.zipform,.area{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.ziprow{display:flex;gap:8px}
+.ziprow input{flex:1;min-width:0;width:100%;font-family:var(--font-latin);font-size:26px;letter-spacing:.14em;font-variant-numeric:tabular-nums;padding:8px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);direction:ltr;text-align:start}
+.ziprow input:focus{border-color:var(--lapis);outline:none}
+.err{color:var(--bad);margin:0;min-height:1.5em;font-size:14px}
+.place{margin:0;font-size:20px;font-weight:600;line-height:1.35}
+.sel{appearance:none;-webkit-appearance:none;width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding-block:10px;padding-inline:12px 40px;font-size:17px;font-weight:600;cursor:pointer}
+.sel-wrap{position:relative}
+.sel-wrap::after{content:"";position:absolute;inset-inline-end:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.wz-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;color:var(--muted)}
+.wz-grp{font-weight:700;color:var(--lapis)}
+.bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--lapis);border-radius:inherit;transition:width .25s ease}
+.wz-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:14px}
+.wz-q{margin:0;font-family:var(--font-body);font-weight:600;font-size:21px;line-height:1.35;text-wrap:balance}
+.wz-q:focus{outline:none}
+.wz-office{margin:0;font-size:21px;font-weight:700;line-height:1.3;text-wrap:balance}
+.wz-card .cname{font-size:18px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 14px;font-weight:600;cursor:pointer;min-height:44px;line-height:1.3}
+.opt.en{font-family:var(--font-latin)}
+.opt[aria-pressed="true"]{background:var(--lapis);border-color:var(--lapis);color:var(--lapis-ink)}
+.optlist{display:grid;gap:8px}
+.check{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);cursor:pointer;line-height:1.35}
+.check:has(input:checked){border-color:var(--lapis);background:var(--lapis-soft)}
+.check input{width:20px;height:20px;accent-color:var(--lapis);flex:none;margin:0}
+.check.top{align-items:flex-start}
+.check.top input{margin-top:3px}
+.gitem{display:grid;gap:4px;min-width:0;flex:1}
+.gitem .office{font-size:15px}
+.gitem .cname{font-size:15px}
+.picked{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px}
+.wz-nav{display:flex;gap:10px}
+.wz-nav .btn{flex:1}
+.skip{justify-self:center;border:0;background:none;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px;font-size:14px}
+.onlist{display:inline-flex;align-items:center;gap:6px;color:var(--good);font-size:14px;font-weight:600}
+.onlist svg{width:16px;height:16px}
+.unsure{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.unsure li{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between;background:var(--won-soft);border-radius:10px;padding:10px 12px}
+
+/* All races */
+.statecard{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px}
+.summary{margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.notpub{background:var(--won-soft);color:var(--ink);border-radius:10px;padding:12px;font-size:15px}
+.notpub p{margin:0 0 4px}
+.controls{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);margin-top:12px;border-bottom:1px solid var(--line)}
+.controls .wrap{padding-block:10px;display:grid;gap:8px}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.search:focus-within{border-color:var(--lapis)}
+.search svg{width:18px;height:18px;color:var(--muted);flex:none}
+.search input{flex:1;min-width:0;border:0;background:transparent;padding:11px 0;font-size:16px;outline:none}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.fchip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:500;cursor:pointer;min-height:36px;white-space:nowrap}
+.fchip[aria-pressed="true"]{background:var(--lapis);border-color:var(--lapis);color:var(--lapis-ink)}
+.results{display:grid;gap:22px;padding-block:14px 8px}
+.jump{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted)}
+.jump button{border:0;background:none;padding:2px 0;color:var(--lapis);font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.jump b{font-variant-numeric:tabular-nums;font-weight:500;color:var(--muted)}
+.sec{display:grid;gap:8px;scroll-margin-top:calc(env(safe-area-inset-top, 0px) + 120px)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 2px;font-family:var(--font-display);font-weight:500;font-size:20px;line-height:1.3}
+.sec-h small{font-family:var(--font-body);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.localnote{margin:0;font-size:14px;color:var(--muted);background:var(--none-soft);border-radius:10px;padding:10px 12px}
+.race{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px}
+.race.on{border-color:var(--lapis);box-shadow:inset 3px 0 0 var(--lapis)}
+:root[dir="rtl"] .race.on{box-shadow:inset -3px 0 0 var(--lapis)}
+.race-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.office{margin:0;font-size:15px;font-weight:600;line-height:1.35;min-width:0;text-wrap:balance}
+.add{flex:none;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--surface);color:var(--lapis);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;cursor:pointer;min-height:34px;white-space:nowrap}
+.add svg{width:14px;height:14px}
+.add:hover{background:var(--lapis-soft)}
+.add[aria-pressed="true"]{background:var(--lapis);border-color:var(--lapis);color:var(--lapis-ink)}
+.empty{padding:28px 4px;text-align:center;color:var(--muted)}
+.more{justify-self:center;border:1px solid var(--line);background:var(--surface);color:var(--lapis);border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+.foot{font-size:13px;color:var(--muted);padding-block:6px 20px}
+.foot p{margin:0}
+
+/* My list */
+.grp{display:grid;gap:8px}
+.grp-h{margin:0;font-size:14px;font-weight:600;color:var(--muted)}
+:root[lang="en"] .grp-h{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.pick{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px}
+.pick .names{font-size:16px;min-width:0}
+.rm{flex:none;border:0;background:transparent;color:var(--muted);cursor:pointer;width:34px;height:34px;border-radius:999px;display:grid;place-items:center}
+.rm:hover{background:var(--none-soft);color:var(--ink)}
+.rm svg{width:16px;height:16px}
+.confirm{background:var(--bad-soft);border-radius:12px;padding:12px;display:grid;gap:10px}
+.confirm p{margin:0;font-weight:600}
+.status{min-height:1.5em;margin:0;font-size:14px;color:var(--good)}
+.fallback{width:100%;min-height:160px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px;font-size:14px}
+.emptycard{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:20px;display:grid;gap:10px}
+.emptycard h3{margin:0;font-size:17px}
+.emptycard p{margin:0;color:var(--muted);font-size:15px}
+
+/* About */
+.block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px}
+.block h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:19px}
+.legend{display:grid;gap:12px;margin:0}
+.legend div{display:grid;gap:4px}
+.legend dt{margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.legend dd{margin:0;color:var(--muted);font-size:15px}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;counter-increment:s}
+.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--lapis-soft);color:var(--lapis);display:grid;place-items:center;font-weight:700;font-size:14px;font-family:var(--font-latin)}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:15px}
+.prose{margin:0;font-size:15px;max-width:65ch}
+
+/* Tab bar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom, 0px)}
+.tabbar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px}
+.tab{position:relative;border:0;background:none;display:grid;justify-items:center;align-content:center;gap:1px;padding:5px 2px;border-radius:10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;min-height:54px;line-height:1.25;text-align:center}
+:root[lang="ur"] .tab{line-height:1.7;font-size:12px}
+.tab svg{width:22px;height:22px}
+.tab[aria-current="page"]{color:var(--lapis);background:var(--lapis-soft)}
+.badge{position:absolute;top:3px;inset-inline-start:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--lapis);color:var(--lapis-ink);font-size:11px;line-height:18px;font-variant-numeric:tabular-nums;font-family:var(--font-latin)}
+@media (min-width:640px){ .wordmark{font-size:36px} .wordmark .ar{font-size:32px} }
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto!important;transition:none!important} }
+</style>
+
+<header class="band">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 44 44" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="10" y="10" width="24" height="24"/><rect x="10" y="10" width="24" height="24" transform="rotate(45 22 22)"/></g><circle cx="22" cy="22" r="4.5" fill="currentColor"/></svg>
+        <div>
+          <div class="wordmark"><span>Sawt</span><span class="ar" lang="ar">صوت</span></div>
+          <p class="tagline" id="tagline"></p>
+        </div>
+      </div>
+      <label class="langsel"><span class="sr" id="langLbl">Language</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"/></svg>
+        <select id="langSel" aria-labelledby="langLbl"></select>
+      </label>
+    </div>
+    <div class="eday" id="eday"></div>
+  </div>
+</header>
+
+<main>
+  <section class="view" id="v-walk"><div class="wrap"><div class="page" id="walkpage"></div></div></section>
+  <section class="view" id="v-browse" hidden>
+    <div class="wrap"><div class="statecard" id="statecard"></div></div>
+    <div class="controls" id="controls">
+      <div class="wrap">
+        <label class="search" for="q">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" autocomplete="off" enterkeyhint="search">
+        </label>
+        <div class="chips" id="chips" role="toolbar"></div>
+      </div>
+    </div>
+    <div class="wrap"><div class="results" id="results" aria-live="polite"></div></div>
+  </section>
+  <section class="view" id="v-list" hidden><div class="wrap"><div class="page" id="listpage"></div></div></section>
+  <section class="view" id="v-about" hidden><div class="wrap"><div class="page" id="aboutpage"></div></div></section>
+</main>
+
+<nav class="tabbar" aria-label="Sections">
+  <div class="wrap" id="tabs"></div>
+</nav>
+
+<script>
+(function(){
+"use strict";
+const DATA = __DATA__;
+const ZIPS = __ZIPS__;
+const ZIP3 = __ZIP3__;
+const STATE_NAME = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",PR:"Puerto Rico",VI:"U.S. Virgin Islands",GU:"Guam",AS:"American Samoa",MP:"Northern Mariana Islands"};
+const GUIDE_STATES = ["AL","AZ","CA","CO","CT","DE","FL","GA","IL","IN","KS","MD","MA","MI","MN","MO","NV","NH","NJ","NY","NC","OH","PA","RI","TN","TX","VA","WA","WI"];
+const SLUG = {DE:"Delaware",NH:"new-hampshire",NJ:"new-jersey",NY:"new-york",NC:"north-carolina",RI:"rhode-island"};
+const URLS = {
+  lookup:"https://cairactionguide.org/",
+  endorsements:"https://cairaction.org/endorsements/",
+  method:"https://cairaction.org/how-we-developed-our-endorsements/",
+  register:"https://www.vote.org/am-i-registered-to-vote/",
+  polling:"https://www.vote.org/polling-place-locator/",
+  pdf:c=>"https://cairaction.org/wp-json/cair/v1/state-guide/"+c+"-2026",
+  page:c=>"https://cairaction.org/"+(SLUG[c]||STATE_NAME[c].toLowerCase().replace(/ /g,"-"))+"/"
+};
+const ST = {E:{cls:"s-e",rank:0},J:{cls:"s-e",rank:1},W:{cls:"s-w",rank:2},P:{cls:"s-p",rank:3},X:{cls:"s-x",rank:4},O:{cls:"s-o",rank:5}};
+const MS = {Y:"s-e",N:"s-o",X:"s-x"};
+const LANGS = [["en","English"],["ar","العربية"],["ur","اردو"],["bn","বাংলা"],["so","Soomaali"],["fa","فارسی"],["tr","Türkçe"]];
+const FONT_URL = {
+  fa:"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap",
+  ur:"https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap",
+  bn:"https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+};
+
+/* ================= translations ================= */
+const T = {};
+T.en = {
+ groupHint:"Uncheck any contest that isn't on your ballot.",
+ dir:"ltr", langLabel:"Language",
+ tagline:"Follow CAIR Action's 2026 endorsements, race by race.",
+ eday:"Election Day", edate:"Tuesday, November 3, 2026",
+ days:n=>n===1?"1 day to go":n+" days to go", today:"Today is Election Day", past:"Election Day has passed",
+ tabs:{walk:"Step by step",browse:"All races",list:"My list",about:"About"},
+ yourState:"Your state", notPubOpt:"guide not published yet",
+ notPub:s=>"CAIR Action hasn't published a 2026 general election guide for "+s+" yet.",
+ notPubHint:"Check the state page for updates as Election Day gets closer.",
+ pdf:"Official guide (PDF)", lookup:"Find your ballot by address", statePage:"State page",
+ search:"Search a name, city or district",
+ fAll:"All", fE:"Endorsed", fP:"Preferred", fO:"Oppose", fM:"Ballot measures", fMine:"On my list",
+ sec:{F:"Federal",S:"State",L:"Local",M:"Ballot measures"},
+ races:n=>n===1?"1 race":n+" races",
+ localNote:"Local races and measures depend on your address. Match them against your sample ballot.",
+ st:{E:"Endorsed",J:"Joint endorsement",W:"Already won",P:"Preferred",X:"No endorsement",O:"Oppose"},
+ ms:{Y:"Support · vote Yes",N:"Oppose · vote No",X:"No recommendation"},
+ sum:{e:"endorsed",p:"preferred",o:"to oppose",m:"measures"},
+ add:"Add", added:"Added", addAria:o=>"Add "+o+" to my list", rmAria:o=>"Remove "+o+" from my list",
+ nores:"No races match. Try a last name, a city, or just a district number.",
+ more:n=>"Show "+n+" more",
+ listTitle:"My list",
+ listIntro:"The races you marked as being on your ballot, in ballot order. This list stays on this phone or computer.",
+ emptyTitle:"Nothing on your list yet",
+ emptyBody:"Enter your ZIP code in Step by step, or tap Add on each race in All races that's on your ballot.",
+ goWalk:"Go through my ballot",
+ noEnd:"No endorsement in this race",
+ copy:"Copy list", copied:"Copied. Paste it into a note or message.", copyFail:"Your browser blocked copying. Select the text below and copy it.",
+ wa:"Send on WhatsApp", clear:"Clear list", clearQ:n=>"Remove all "+n+" races from your list?", yes:"Remove all", no:"Keep them",
+ shareHead:s=>"My ballot notes · "+s+" · Nov 3, 2026",
+ shareFoot:"Based on CAIR Action's published endorsements. Confirm at cairaction.org/endorsements",
+ aboutTitle:"About Sawt", aboutLead:"Sawt (صوت) means both voice and vote in Arabic.",
+ labelsTitle:"What the labels mean",
+ labels:{E:"Strongly aligned with CAIR Action's values, with a record of commitment to justice.",
+  J:"The guide lists more than one endorsed candidate for this race.",
+  P:"Generally favorable, though not fully aligned on some critical issues. A better option than candidates who harm these causes.",
+  O:"Has taken harmful stances. CAIR Action strongly recommends voting against this candidate.",
+  W:"Marked in the guide as having already won. Shown for reference.",
+  X:"Reviewed, but no candidate aligned closely enough, or there wasn't enough information."},
+ measuresLabel:"On ballot measures, Support means vote Yes and Oppose means vote No.",
+ methodLink:"How CAIR Action decides its endorsements",
+ planTitle:"Plan your vote",
+ plan:[["Confirm you're registered","Check your registration status before your state's deadline.","register","Check registration"],
+  ["Find your polling place","Look up where and when to vote, including early voting.","polling","Find polling place"],
+  ["See your exact ballot","Enter your home address on CAIR Action's guide tool to see only your races.","lookup","Open address lookup"],
+  ["Build your list","Use Step by step here, then copy the list or send it to yourself. Some polling places limit phone use, so a written copy helps.",null,null],
+  ["Go together","Offer elders and first-time voters a ride, and plan the trip around work and prayer times.",null,null]],
+ sourceTitle:"Sources and limits",
+ source:["Sawt is an independent companion to CAIR Action's voter guides. It is not made, endorsed or reviewed by CAIR Action.",
+  "Endorsements were copied from the 2026 General Election guides published on cairaction.org, as of October 18, 2026. Guides can change, so confirm on the official guide before you vote.",
+  "Office names are shortened for small screens, exact duplicate entries are shown once, and a few clear misspellings were fixed (for example, Gina Hinojosa).",
+  "Your ZIP code sets your state, county and likely city. It can't pin down your districts, and several states redrew their maps for 2026, so the step-by-step mode asks which district you're in.",
+  "No 2026 general election guide was available yet for Nevada, New Hampshire or Wisconsin.",
+  "Translations were prepared with AI help and may contain mistakes. When in doubt, check the English version."],
+ allGuides:"All CAIR Action guides",
+ foot:"Data copied from CAIR Action's published guides on Oct 18, 2026. Not affiliated with CAIR Action.",
+ wzTitle:"Your ballot, step by step",
+ wzIntro:"Enter your ZIP code. We'll go through your ballot in order and show CAIR Action's position on each contest.",
+ zipLabel:"ZIP code", zipBtn:"Start", zipPrivacy:"Your ZIP code stays on this device.",
+ zipBad:"Enter a 5-digit ZIP code.", zipUnknown:"We couldn't find that ZIP code. Check the number and try again.",
+ zipOther:s=>"That ZIP code is in "+s+". CAIR Action doesn't publish a voter guide for that state.",
+ areaTitle:"Your area", countyLbl:"County", countyPick:"Choose your county", changeZip:"Change ZIP code",
+ whyDistricts:"A ZIP code can cross district lines, so we'll ask which district you're in when it matters. Your sample ballot or voter registration card lists your districts.",
+ orderNote:"Contests follow the usual order of your state's ballot. Your county's sample ballot is the final word.",
+ goBtn:"Go through my ballot",
+ stepOf:(i,n)=>"Step "+i+" of "+n,
+ back:"Back", next:"Next", finish:"Finish", notOnBallot:"Not on my ballot", onList:"On my list",
+ distQ:f=>"Which "+f+" district are you in?",
+ distNo:"My district isn't listed", distUnsure:"Not sure",
+ distNoMsg:"CAIR Action didn't list a position for other districts in this contest.",
+ distUnsureMsg:"Look up your districts by address, then come back to this step.",
+ lookupShort:"Look up my districts",
+ cityQ:"Which city do you vote in?", cityNone:"Another city, or an unincorporated area",
+ cityHint:"Some ZIP codes cross city lines. Pick the city printed on your ballot.",
+ schoolQ:"Which school and college districts are you in?",
+ schoolHint:"Pick all that apply. Leave them blank if none apply or you're not sure.",
+ specialQ:"Are you in any of these local districts?",
+ grp:{fed:"Federal",state:"Statewide",leg:"State legislature",jud:"Courts",county:"County",city:"City",school:"Schools",special:"Local districts",meas:"Ballot measures"},
+ doneTitle:"You're ready",
+ doneBody:n=>n===1?"1 contest is on your list, in ballot order.":n+" contests are on your list, in ballot order.",
+ doneUnsure:"Still to check", seeList:"See my list", restart:"Start over", review:"Review my answers"
+};
+T.ar = {
+ groupHint:"أزِل العلامة عن أي سباق غير موجود في بطاقتك.",
+ dir:"rtl", langLabel:"اللغة",
+ tagline:"تابِع تأييدات CAIR Action لانتخابات 2026، سباقًا بسباق.",
+ eday:"يوم الانتخابات", edate:"الثلاثاء 3 نوفمبر 2026",
+ days:n=>n===1?"باقٍ يوم واحد":n===2?"باقٍ يومان":n<=10?"باقٍ "+n+" أيام":"باقٍ "+n+" يومًا", today:"اليوم يوم الانتخابات", past:"انتهى يوم الانتخابات",
+ tabs:{walk:"خطوة بخطوة",browse:"كل السباقات",list:"قائمتي",about:"حول"},
+ yourState:"ولايتك", notPubOpt:"لم يُنشر الدليل بعد",
+ notPub:s=>"لم تنشر CAIR Action بعدُ دليل الانتخابات العامة 2026 لولاية "+s+".",
+ notPubHint:"تابِع صفحة الولاية لمعرفة التحديثات مع اقتراب يوم الانتخابات.",
+ pdf:"الدليل الرسمي (PDF)", lookup:"اعرف بطاقتك من عنوانك", statePage:"صفحة الولاية",
+ search:"ابحث باسم أو مدينة أو دائرة",
+ fAll:"الكل", fE:"مؤيَّد", fP:"مفضَّل", fO:"معارَض", fM:"المقترحات", fMine:"في قائمتي",
+ sec:{F:"المناصب الفيدرالية",S:"مناصب الولاية",L:"المناصب المحلية",M:"المقترحات على بطاقة الاقتراع"},
+ races:n=>"عدد السباقات: "+n,
+ localNote:"تختلف السباقات والمقترحات المحلية حسب عنوانك. طابِقها مع نموذج بطاقتك الانتخابية.",
+ st:{E:"مؤيَّد",J:"تأييد مشترك",W:"فاز مسبقًا",P:"مفضَّل",X:"بلا تأييد",O:"معارَض"},
+ ms:{Y:"تأييد · صوّت بنعم",N:"معارضة · صوّت بلا",X:"بلا توصية"},
+ sum:{e:"مؤيَّد",p:"مفضَّل",o:"معارَض",m:"مقترحات"},
+ add:"أضِف", added:"أُضيف", addAria:o=>"أضِف "+o+" إلى قائمتي", rmAria:o=>"احذف "+o+" من قائمتي",
+ nores:"لا توجد نتائج. جرّب اسم العائلة أو اسم المدينة أو رقم الدائرة فقط.",
+ more:n=>"اعرض "+n+" أخرى",
+ listTitle:"قائمتي",
+ listIntro:"السباقات التي حدّدتَ أنها على بطاقتك الانتخابية، بترتيب البطاقة. تبقى القائمة محفوظة على هذا الجهاز.",
+ emptyTitle:"قائمتك فارغة حتى الآن",
+ emptyBody:"أدخل رمزك البريدي في «خطوة بخطوة»، أو اضغط «أضِف» في «كل السباقات» على كل سباق موجود في بطاقتك.",
+ goWalk:"مرّ على بطاقتي",
+ noEnd:"لا تأييد في هذا السباق",
+ copy:"انسخ القائمة", copied:"تم النسخ. الصقها في ملاحظة أو رسالة.", copyFail:"منع المتصفح النسخ. حدِّد النص أدناه وانسخه.",
+ wa:"أرسِل عبر واتساب", clear:"امسح القائمة", clearQ:n=>"هل تريد حذف كل السباقات من قائمتك؟ ("+n+")", yes:"احذف الكل", no:"تراجع",
+ shareHead:s=>"ملاحظاتي للتصويت · "+s+" · 3 نوفمبر 2026",
+ shareFoot:"وفق تأييدات CAIR Action المنشورة. تأكّد عبر cairaction.org/endorsements",
+ aboutTitle:"حول «صوت»", aboutLead:"كلمة «صوت» تعني الصوت والتصويت معًا.",
+ labelsTitle:"معنى التصنيفات",
+ labels:{E:"متوافق بقوة مع قيم CAIR Action، وله سجل من الالتزام بالعدالة.",
+  J:"يذكر الدليل أكثر من مرشح مؤيَّد في هذا السباق.",
+  P:"موقفه إيجابي عمومًا، لكنه لا يتفق تمامًا في بعض القضايا المهمة. خيار أفضل من المرشحين الذين يضرّون بهذه القضايا.",
+  O:"اتخذ مواقف ضارة، وتوصي CAIR Action بقوة بالتصويت ضده.",
+  W:"يذكر الدليل أنه فاز بالفعل، ويُعرض هنا للاطلاع فقط.",
+  X:"رُوجع السباق، لكن لم يتوافق أي مرشح بما يكفي أو لم تتوفر معلومات كافية."},
+ measuresLabel:"في المقترحات: «تأييد» يعني التصويت بنعم، و«معارضة» تعني التصويت بلا.",
+ methodLink:"كيف تختار CAIR Action تأييداتها (بالإنجليزية)",
+ planTitle:"خطّط لتصويتك",
+ plan:[["تأكّد من تسجيلك","تحقّق من حالة تسجيلك قبل الموعد النهائي في ولايتك.","register","تحقّق من التسجيل"],
+  ["اعرف مركز الاقتراع","ابحث عن مكان وموعد التصويت، بما في ذلك التصويت المبكر.","polling","ابحث عن مركز الاقتراع"],
+  ["اطّلع على بطاقتك بالضبط","أدخل عنوان منزلك في أداة CAIR Action لترى السباقات الخاصة بك فقط.","lookup","افتح البحث بالعنوان"],
+  ["جهّز قائمتك","استخدم «خطوة بخطوة» هنا، ثم انسخ القائمة أو أرسلها لنفسك. بعض مراكز الاقتراع تقيّد استخدام الهاتف، فتفيد نسخة مكتوبة.",null,null],
+  ["اذهبوا معًا","ساعِدوا كبار السن ومن يصوّت لأول مرة في الوصول، وخطِّطوا للمشوار حول أوقات العمل والصلاة.",null,null]],
+ sourceTitle:"المصادر والحدود",
+ source:["«صوت» تطبيق مستقل يرافق أدلة CAIR Action للناخبين، وليس من إعداد CAIR Action ولا بتأييدها أو مراجعتها.",
+  "نُقلت التأييدات من أدلة الانتخابات العامة 2026 المنشورة على cairaction.org حتى 18 أكتوبر 2026. قد تتغير الأدلة، فتأكّد من الدليل الرسمي قبل التصويت.",
+  "اختُصرت أسماء المناصب لتناسب الشاشات الصغيرة، وتظهر الإدخالات المكررة مرة واحدة، وصُحّحت أخطاء إملائية واضحة قليلة (مثل Gina Hinojosa).",
+  "يحدّد رمزك البريدي ولايتك ومقاطعتك ومدينتك المرجّحة، لكنه لا يحدّد دوائرك بدقة، كما أعادت عدة ولايات رسم خرائطها لعام 2026، لذلك يسألك وضع «خطوة بخطوة» عن دائرتك.",
+  "لم يكن دليل الانتخابات العامة 2026 متاحًا بعدُ لولايات نيفادا ونيوهامشير وويسكونسن.",
+  "أُعدّت الترجمات بمساعدة الذكاء الاصطناعي وقد تحتوي على أخطاء. عند الشك، ارجع إلى النسخة الإنجليزية."],
+ allGuides:"كل أدلة CAIR Action",
+ foot:"البيانات منقولة من أدلة CAIR Action المنشورة في 18 أكتوبر 2026. التطبيق غير تابع لـ CAIR Action.",
+ wzTitle:"بطاقتك الانتخابية خطوة بخطوة",
+ wzIntro:"أدخل رمزك البريدي (ZIP). سنمرّ معك على بطاقتك بالترتيب ونعرض موقف CAIR Action في كل سباق.",
+ zipLabel:"الرمز البريدي (ZIP)", zipBtn:"ابدأ", zipPrivacy:"يبقى رمزك البريدي على هذا الجهاز فقط.",
+ zipBad:"أدخل رمزًا بريديًا من 5 أرقام.", zipUnknown:"لم نجد هذا الرمز البريدي. تحقّق من الرقم وحاول مرة أخرى.",
+ zipOther:s=>"هذا الرمز البريدي في "+s+". لا تنشر CAIR Action دليلًا للناخبين لهذه الولاية.",
+ areaTitle:"منطقتك", countyLbl:"المقاطعة", countyPick:"اختر مقاطعتك", changeZip:"غيّر الرمز البريدي",
+ whyDistricts:"قد يمتد الرمز البريدي عبر أكثر من دائرة، لذلك سنسألك عن دائرتك عند الحاجة. تجد دوائرك في نموذج بطاقتك الانتخابية أو بطاقة تسجيلك.",
+ orderNote:"تتبع السباقات الترتيب المعتاد لبطاقة ولايتك. نموذج البطاقة الصادر عن مقاطعتك هو المرجع النهائي.",
+ goBtn:"مرّ على بطاقتي",
+ stepOf:(i,n)=>"الخطوة "+i+" من "+n,
+ back:"رجوع", next:"التالي", finish:"إنهاء", notOnBallot:"ليس في بطاقتي", onList:"في قائمتي",
+ distQ:f=>"في أي دائرة من "+f+" أنت؟",
+ distNo:"دائرتي غير موجودة هنا", distUnsure:"لست متأكدًا",
+ distNoMsg:"لم تذكر CAIR Action موقفًا لبقية الدوائر في هذا السباق.",
+ distUnsureMsg:"ابحث عن دوائرك بعنوانك، ثم عُد إلى هذه الخطوة.",
+ lookupShort:"اعرف دوائري",
+ cityQ:"في أي مدينة تصوّت؟", cityNone:"مدينة أخرى أو منطقة لا تتبع مدينة",
+ cityHint:"بعض الرموز البريدية تمتد عبر أكثر من مدينة. اختر المدينة المذكورة في بطاقتك.",
+ schoolQ:"ما المناطق التعليمية والجامعية التي تتبعها؟",
+ schoolHint:"اختر كل ما ينطبق. اتركها فارغة إن لم ينطبق شيء أو لم تكن متأكدًا.",
+ specialQ:"هل تتبع أيًّا من هذه المناطق الخدمية المحلية؟",
+ grp:{fed:"المناصب الفيدرالية",state:"مناصب الولاية",leg:"المجلس التشريعي للولاية",jud:"المحاكم",county:"المقاطعة",city:"المدينة",school:"التعليم",special:"المناطق الخدمية",meas:"المقترحات"},
+ doneTitle:"أنت جاهز",
+ doneBody:n=>"عدد السباقات في قائمتك: "+n+"، مرتبة كما في البطاقة.",
+ doneUnsure:"ما زال عليك التحقق منه", seeList:"اعرض قائمتي", restart:"ابدأ من جديد", review:"راجِع إجاباتي"
+};
+T.ur = {
+ groupHint:"جو مقابلہ آپ کے بیلٹ پر نہیں، اس کا نشان ہٹا دیں۔",
+ dir:"rtl", langLabel:"زبان",
+ tagline:"2026 کے انتخابات میں CAIR Action کی تائیدات، ہر مقابلے کے لیے۔",
+ eday:"انتخابات کا دن", edate:"منگل، 3 نومبر 2026",
+ days:n=>n===1?"ایک دن باقی":n+" دن باقی", today:"آج انتخابات کا دن ہے", past:"انتخابات کا دن گزر چکا",
+ tabs:{walk:"مرحلہ وار",browse:"تمام مقابلے",list:"میری فہرست",about:"تعارف"},
+ yourState:"آپ کی ریاست", notPubOpt:"گائیڈ ابھی شائع نہیں ہوئی",
+ notPub:s=>"CAIR Action نے ابھی تک "+s+" کے لیے 2026 کے عام انتخابات کی گائیڈ شائع نہیں کی۔",
+ notPubHint:"انتخابات کا دن قریب آنے پر اپ ڈیٹس کے لیے ریاست کا صفحہ دیکھیں۔",
+ pdf:"سرکاری گائیڈ (PDF)", lookup:"پتے سے اپنا بیلٹ معلوم کریں", statePage:"ریاست کا صفحہ",
+ search:"نام، شہر یا حلقہ تلاش کریں",
+ fAll:"سب", fE:"تائید شدہ", fP:"ترجیحی", fO:"مخالفت", fM:"بیلٹ تجاویز", fMine:"میری فہرست میں",
+ sec:{F:"وفاقی",S:"ریاستی",L:"مقامی",M:"بیلٹ تجاویز"},
+ races:n=>n+" مقابلے",
+ localNote:"مقامی مقابلے اور تجاویز آپ کے پتے پر منحصر ہیں۔ انہیں اپنے نمونہ بیلٹ سے ملا لیں۔",
+ st:{E:"تائید شدہ",J:"مشترکہ تائید",W:"پہلے ہی جیت چکے",P:"ترجیحی",X:"کوئی تائید نہیں",O:"مخالفت"},
+ ms:{Y:"حمایت · ہاں میں ووٹ دیں",N:"مخالفت · نہیں میں ووٹ دیں",X:"کوئی سفارش نہیں"},
+ sum:{e:"تائید شدہ",p:"ترجیحی",o:"مخالفت",m:"تجاویز"},
+ add:"شامل کریں", added:"شامل ہے", addAria:o=>o+" کو میری فہرست میں شامل کریں", rmAria:o=>o+" کو میری فہرست سے ہٹائیں",
+ nores:"کوئی نتیجہ نہیں ملا۔ خاندانی نام، شہر یا صرف حلقے کا نمبر آزمائیں۔",
+ more:n=>n+" مزید دکھائیں",
+ listTitle:"میری فہرست",
+ listIntro:"وہ مقابلے جو آپ نے اپنے بیلٹ پر نشان زد کیے، بیلٹ کی ترتیب میں۔ یہ فہرست اسی فون یا کمپیوٹر پر محفوظ رہتی ہے۔",
+ emptyTitle:"آپ کی فہرست ابھی خالی ہے",
+ emptyBody:"«مرحلہ وار» میں اپنا زپ کوڈ درج کریں، یا «تمام مقابلے» میں ہر اس مقابلے پر «شامل کریں» دبائیں جو آپ کے بیلٹ پر ہے۔",
+ goWalk:"میرا بیلٹ مرحلہ وار دیکھیں",
+ noEnd:"اس مقابلے میں کوئی تائید نہیں",
+ copy:"فہرست کاپی کریں", copied:"کاپی ہو گئی۔ اسے کسی نوٹ یا پیغام میں چسپاں کریں۔", copyFail:"براؤزر نے کاپی کرنے سے روک دیا۔ نیچے کا متن منتخب کر کے کاپی کریں۔",
+ wa:"واٹس ایپ پر بھیجیں", clear:"فہرست صاف کریں", clearQ:n=>"اپنی فہرست سے تمام "+n+" مقابلے ہٹا دیں؟", yes:"سب ہٹا دیں", no:"رہنے دیں",
+ shareHead:s=>"میرے ووٹ کے نوٹس · "+s+" · 3 نومبر 2026",
+ shareFoot:"CAIR Action کی شائع شدہ تائیدات کی بنیاد پر۔ cairaction.org/endorsements پر تصدیق کریں",
+ aboutTitle:"«صوت» کا تعارف", aboutLead:"عربی میں «صوت» کا مطلب آواز بھی ہے اور ووٹ بھی۔",
+ labelsTitle:"لیبلز کا مطلب",
+ labels:{E:"CAIR Action کی اقدار سے بھرپور ہم آہنگ، اور انصاف سے وابستگی کا ریکارڈ رکھتے ہیں۔",
+  J:"گائیڈ میں اس مقابلے کے لیے ایک سے زیادہ تائید شدہ امیدوار درج ہیں۔",
+  P:"عمومی طور پر مثبت، مگر کچھ اہم مسائل پر مکمل ہم آہنگ نہیں۔ ان امیدواروں سے بہتر انتخاب جو ان مقاصد کو نقصان پہنچاتے ہیں۔",
+  O:"نقصان دہ مؤقف اختیار کیے ہیں۔ CAIR Action ان کے خلاف ووٹ دینے کی پرزور سفارش کرتی ہے۔",
+  W:"گائیڈ کے مطابق پہلے ہی جیت چکے ہیں۔ صرف معلومات کے لیے دکھایا گیا ہے۔",
+  X:"مقابلے کا جائزہ لیا گیا، مگر کوئی امیدوار کافی ہم آہنگ نہیں تھا یا معلومات کافی نہیں تھیں۔"},
+ measuresLabel:"بیلٹ تجاویز پر «حمایت» کا مطلب ہاں اور «مخالفت» کا مطلب نہیں میں ووٹ دینا ہے۔",
+ methodLink:"CAIR Action اپنی تائیدات کیسے طے کرتی ہے (انگریزی)",
+ planTitle:"اپنے ووٹ کی منصوبہ بندی کریں",
+ plan:[["تصدیق کریں کہ آپ رجسٹرڈ ہیں","اپنی ریاست کی آخری تاریخ سے پہلے اپنی رجسٹریشن چیک کریں۔","register","رجسٹریشن چیک کریں"],
+  ["پولنگ اسٹیشن معلوم کریں","کہاں اور کب ووٹ دینا ہے، بشمول قبل از وقت ووٹنگ، معلوم کریں۔","polling","پولنگ اسٹیشن تلاش کریں"],
+  ["اپنا اصل بیلٹ دیکھیں","CAIR Action کے ٹول میں اپنے گھر کا پتہ درج کریں تاکہ صرف آپ کے مقابلے نظر آئیں۔","lookup","پتے سے تلاش کریں"],
+  ["اپنی فہرست بنائیں","یہاں «مرحلہ وار» استعمال کریں، پھر فہرست کاپی کریں یا خود کو بھیج دیں۔ کچھ پولنگ اسٹیشنوں پر فون کا استعمال محدود ہوتا ہے، اس لیے لکھی ہوئی نقل مفید ہے۔",null,null],
+  ["مل کر جائیں","بزرگوں اور پہلی بار ووٹ دینے والوں کو ساتھ لے جائیں، اور کام اور نماز کے اوقات کے مطابق جانے کا منصوبہ بنائیں۔",null,null]],
+ sourceTitle:"ذرائع اور حدود",
+ source:["«صوت» CAIR Action کی ووٹر گائیڈز کا ایک آزاد ساتھی ہے۔ اسے CAIR Action نے نہ بنایا ہے، نہ اس کی تائید یا جانچ کی ہے۔",
+  "تائیدات cairaction.org پر شائع شدہ 2026 کے عام انتخابات کی گائیڈز سے 18 اکتوبر 2026 تک نقل کی گئی ہیں۔ گائیڈز بدل سکتی ہیں، اس لیے ووٹ دینے سے پہلے سرکاری گائیڈ سے تصدیق کریں۔",
+  "چھوٹی اسکرینوں کے لیے عہدوں کے نام مختصر کیے گئے ہیں، دہرائے گئے اندراج ایک بار دکھائے گئے ہیں، اور چند واضح املا کی غلطیاں درست کی گئی ہیں (مثلاً Gina Hinojosa)۔",
+  "آپ کا زپ کوڈ آپ کی ریاست، کاؤنٹی اور ممکنہ شہر طے کرتا ہے، مگر حلقے ٹھیک ٹھیک نہیں بتا سکتا، اور کئی ریاستوں نے 2026 کے لیے نقشے دوبارہ بنائے ہیں، اس لیے «مرحلہ وار» میں آپ سے حلقہ پوچھا جاتا ہے۔",
+  "نیواڈا، نیو ہیمپشائر اور وسکونسن کے لیے 2026 کے عام انتخابات کی گائیڈ ابھی دستیاب نہیں تھی۔",
+  "تراجم AI کی مدد سے تیار کیے گئے ہیں اور ان میں غلطیاں ہو سکتی ہیں۔ شک ہو تو انگریزی ورژن دیکھیں۔"],
+ allGuides:"CAIR Action کی تمام گائیڈز",
+ foot:"ڈیٹا 18 اکتوبر 2026 کو CAIR Action کی شائع شدہ گائیڈز سے نقل کیا گیا۔ CAIR Action سے وابستہ نہیں۔",
+ wzTitle:"آپ کا بیلٹ، مرحلہ وار",
+ wzIntro:"اپنا زپ کوڈ درج کریں۔ ہم آپ کے بیلٹ کو ترتیب سے دیکھیں گے اور ہر مقابلے پر CAIR Action کا مؤقف دکھائیں گے۔",
+ zipLabel:"زپ کوڈ (ZIP)", zipBtn:"شروع کریں", zipPrivacy:"آپ کا زپ کوڈ صرف اسی ڈیوائس پر رہتا ہے۔",
+ zipBad:"5 ہندسوں کا زپ کوڈ درج کریں۔", zipUnknown:"یہ زپ کوڈ نہیں ملا۔ نمبر چیک کر کے دوبارہ کوشش کریں۔",
+ zipOther:s=>"یہ زپ کوڈ "+s+" میں ہے۔ CAIR Action اس ریاست کے لیے ووٹر گائیڈ شائع نہیں کرتی۔",
+ areaTitle:"آپ کا علاقہ", countyLbl:"کاؤنٹی", countyPick:"اپنی کاؤنٹی چنیں", changeZip:"زپ کوڈ بدلیں",
+ whyDistricts:"ایک زپ کوڈ کئی حلقوں میں پھیلا ہو سکتا ہے، اس لیے ضرورت پڑنے پر ہم آپ کا حلقہ پوچھیں گے۔ آپ کے حلقے آپ کے نمونہ بیلٹ یا ووٹر رجسٹریشن کارڈ پر درج ہوتے ہیں۔",
+ orderNote:"مقابلے آپ کی ریاست کے بیلٹ کی معمول کی ترتیب میں ہیں۔ آپ کی کاؤنٹی کا نمونہ بیلٹ حتمی ہے۔",
+ goBtn:"میرا بیلٹ شروع کریں",
+ stepOf:(i,n)=>"مرحلہ "+i+" از "+n,
+ back:"واپس", next:"اگلا", finish:"مکمل", notOnBallot:"میرے بیلٹ پر نہیں", onList:"میری فہرست میں",
+ distQ:f=>"آپ "+f+" کے کس حلقے میں ہیں؟",
+ distNo:"میرا حلقہ یہاں نہیں", distUnsure:"یقین نہیں",
+ distNoMsg:"CAIR Action نے اس مقابلے کے دوسرے حلقوں کے لیے کوئی مؤقف درج نہیں کیا۔",
+ distUnsureMsg:"اپنے پتے سے اپنے حلقے معلوم کریں، پھر اس مرحلے پر واپس آئیں۔",
+ lookupShort:"میرے حلقے معلوم کریں",
+ cityQ:"آپ کس شہر میں ووٹ دیتے ہیں؟", cityNone:"کوئی اور شہر، یا غیر شہری علاقہ",
+ cityHint:"کچھ زپ کوڈ کئی شہروں میں پھیلے ہوتے ہیں۔ وہ شہر چنیں جو آپ کے بیلٹ پر ہے۔",
+ schoolQ:"آپ کن اسکول اور کالج اضلاع میں ہیں؟",
+ schoolHint:"جو لاگو ہوں سب چنیں۔ اگر کوئی نہیں یا یقین نہیں تو خالی چھوڑ دیں۔",
+ specialQ:"کیا آپ ان میں سے کسی مقامی ضلع میں ہیں؟",
+ grp:{fed:"وفاقی",state:"ریاستی عہدے",leg:"ریاستی مقننہ",jud:"عدالتیں",county:"کاؤنٹی",city:"شہر",school:"تعلیم",special:"مقامی اضلاع",meas:"بیلٹ تجاویز"},
+ doneTitle:"آپ تیار ہیں",
+ doneBody:n=>"آپ کی فہرست میں "+n+" مقابلے بیلٹ کی ترتیب سے ہیں۔",
+ doneUnsure:"ابھی چیک کرنا ہے", seeList:"میری فہرست دیکھیں", restart:"دوبارہ شروع کریں", review:"اپنے جوابات دیکھیں"
+};
+T.bn = {
+ groupHint:"যে পদ আপনার ব্যালটে নেই, তার টিক তুলে দিন।",
+ dir:"ltr", langLabel:"ভাষা",
+ tagline:"2026 সালের নির্বাচনে CAIR Action-এর সমর্থন, প্রতিটি পদের জন্য।",
+ eday:"নির্বাচনের দিন", edate:"মঙ্গলবার, 3 নভেম্বর 2026",
+ days:n=>n+" দিন বাকি", today:"আজ নির্বাচনের দিন", past:"নির্বাচনের দিন পেরিয়ে গেছে",
+ tabs:{walk:"ধাপে ধাপে",browse:"সব পদ",list:"আমার তালিকা",about:"পরিচিতি"},
+ yourState:"আপনার অঙ্গরাজ্য", notPubOpt:"গাইড এখনও প্রকাশিত হয়নি",
+ notPub:s=>"CAIR Action এখনও "+s+"-এর জন্য 2026 সালের সাধারণ নির্বাচনের গাইড প্রকাশ করেনি।",
+ notPubHint:"নির্বাচনের দিন ঘনিয়ে এলে হালনাগাদের জন্য অঙ্গরাজ্যের পাতাটি দেখুন।",
+ pdf:"অফিসিয়াল গাইড (PDF)", lookup:"ঠিকানা দিয়ে আপনার ব্যালট খুঁজুন", statePage:"অঙ্গরাজ্যের পাতা",
+ search:"নাম, শহর বা ডিস্ট্রিক্ট খুঁজুন",
+ fAll:"সব", fE:"সমর্থিত", fP:"পছন্দনীয়", fO:"বিরোধিতা", fM:"ব্যালট প্রস্তাব", fMine:"আমার তালিকায়",
+ sec:{F:"ফেডারেল",S:"অঙ্গরাজ্য",L:"স্থানীয়",M:"ব্যালট প্রস্তাব"},
+ races:n=>n+"টি পদ",
+ localNote:"স্থানীয় পদ ও প্রস্তাব আপনার ঠিকানার ওপর নির্ভর করে। আপনার নমুনা ব্যালটের সঙ্গে মিলিয়ে নিন।",
+ st:{E:"সমর্থিত",J:"যৌথ সমর্থন",W:"আগেই জয়ী",P:"পছন্দনীয়",X:"কোনো সমর্থন নেই",O:"বিরোধিতা"},
+ ms:{Y:"সমর্থন · হ্যাঁ ভোট দিন",N:"বিরোধিতা · না ভোট দিন",X:"কোনো সুপারিশ নেই"},
+ sum:{e:"সমর্থিত",p:"পছন্দনীয়",o:"বিরোধিতা",m:"প্রস্তাব"},
+ add:"যোগ করুন", added:"যোগ হয়েছে", addAria:o=>o+" আমার তালিকায় যোগ করুন", rmAria:o=>o+" আমার তালিকা থেকে সরান",
+ nores:"কিছু মেলেনি। পদবি, শহর বা শুধু ডিস্ট্রিক্ট নম্বর দিয়ে চেষ্টা করুন।",
+ more:n=>"আরও "+n+"টি দেখুন",
+ listTitle:"আমার তালিকা",
+ listIntro:"যে পদগুলো আপনার ব্যালটে আছে বলে আপনি চিহ্নিত করেছেন, ব্যালটের ক্রমে। এই তালিকা এই ফোন বা কম্পিউটারেই থাকে।",
+ emptyTitle:"আপনার তালিকা এখনও খালি",
+ emptyBody:"«ধাপে ধাপে»-তে আপনার ZIP কোড দিন, অথবা «সব পদ» থেকে আপনার ব্যালটে থাকা প্রতিটি পদে «যোগ করুন» চাপুন।",
+ goWalk:"আমার ব্যালট ধাপে ধাপে দেখুন",
+ noEnd:"এই পদে কোনো সমর্থন নেই",
+ copy:"তালিকা কপি করুন", copied:"কপি হয়েছে। নোট বা মেসেজে পেস্ট করুন।", copyFail:"ব্রাউজার কপি করতে দেয়নি। নিচের লেখাটি নির্বাচন করে কপি করুন।",
+ wa:"হোয়াটসঅ্যাপে পাঠান", clear:"তালিকা মুছুন", clearQ:n=>"আপনার তালিকা থেকে সব "+n+"টি পদ সরাবেন?", yes:"সব সরান", no:"রেখে দিন",
+ shareHead:s=>"আমার ভোটের নোট · "+s+" · 3 নভেম্বর 2026",
+ shareFoot:"CAIR Action-এর প্রকাশিত সমর্থনের ভিত্তিতে। cairaction.org/endorsements-এ নিশ্চিত হোন",
+ aboutTitle:"«সাওত» সম্পর্কে", aboutLead:"আরবিতে «সাওত» (صوت) মানে কণ্ঠ এবং ভোট দুটোই।",
+ labelsTitle:"লেবেলগুলোর অর্থ",
+ labels:{E:"CAIR Action-এর মূল্যবোধের সঙ্গে দৃঢ়ভাবে সামঞ্জস্যপূর্ণ, ন্যায়বিচারের প্রতি অঙ্গীকারের রেকর্ড আছে।",
+  J:"গাইডে এই পদের জন্য একাধিক সমর্থিত প্রার্থীর নাম আছে।",
+  P:"সাধারণভাবে ইতিবাচক, তবে কিছু গুরুত্বপূর্ণ বিষয়ে পুরোপুরি একমত নন। যারা এসব লক্ষ্যের ক্ষতি করেন তাদের চেয়ে ভালো বিকল্প।",
+  O:"ক্ষতিকর অবস্থান নিয়েছেন। CAIR Action তাদের বিরুদ্ধে ভোট দেওয়ার জোরালো সুপারিশ করে।",
+  W:"গাইডে আগেই জয়ী হিসেবে চিহ্নিত। শুধু তথ্যের জন্য দেখানো হয়েছে।",
+  X:"পর্যালোচনা করা হয়েছে, কিন্তু কোনো প্রার্থী যথেষ্ট সামঞ্জস্যপূর্ণ ছিলেন না বা যথেষ্ট তথ্য ছিল না।"},
+ measuresLabel:"ব্যালট প্রস্তাবে «সমর্থন» মানে হ্যাঁ ভোট, আর «বিরোধিতা» মানে না ভোট।",
+ methodLink:"CAIR Action কীভাবে সমর্থন ঠিক করে (ইংরেজিতে)",
+ planTitle:"আপনার ভোটের পরিকল্পনা করুন",
+ plan:[["নিবন্ধন নিশ্চিত করুন","আপনার অঙ্গরাজ্যের শেষ তারিখের আগে নিবন্ধনের অবস্থা দেখে নিন।","register","নিবন্ধন যাচাই করুন"],
+  ["ভোটকেন্দ্র খুঁজুন","কোথায় ও কখন ভোট দেবেন, আগাম ভোটসহ, জেনে নিন।","polling","ভোটকেন্দ্র খুঁজুন"],
+  ["আপনার ব্যালট দেখুন","শুধু আপনার পদগুলো দেখতে CAIR Action-এর টুলে বাড়ির ঠিকানা দিন।","lookup","ঠিকানা দিয়ে খুঁজুন"],
+  ["তালিকা তৈরি করুন","এখানে «ধাপে ধাপে» ব্যবহার করুন, তারপর তালিকা কপি করুন বা নিজেকে পাঠান। কিছু ভোটকেন্দ্রে ফোন ব্যবহার সীমিত, তাই লিখে নেওয়া ভালো।",null,null],
+  ["একসঙ্গে যান","বয়স্কদের ও প্রথমবারের ভোটারদের সঙ্গে নিয়ে যান, এবং কাজ ও নামাজের সময় মিলিয়ে যাওয়ার পরিকল্পনা করুন।",null,null]],
+ sourceTitle:"উৎস ও সীমাবদ্ধতা",
+ source:["«সাওত» CAIR Action-এর ভোটার গাইডের একটি স্বাধীন সহায়ক। এটি CAIR Action তৈরি, সমর্থন বা পর্যালোচনা করেনি।",
+  "সমর্থনগুলো cairaction.org-এ প্রকাশিত 2026 সালের সাধারণ নির্বাচনের গাইড থেকে 18 অক্টোবর 2026 পর্যন্ত নেওয়া। গাইড বদলাতে পারে, তাই ভোট দেওয়ার আগে অফিসিয়াল গাইডে নিশ্চিত হোন।",
+  "ছোট স্ক্রিনের জন্য পদের নাম সংক্ষিপ্ত করা হয়েছে, পুনরাবৃত্ত এন্ট্রি একবার দেখানো হয়েছে, এবং কয়েকটি স্পষ্ট বানান ভুল ঠিক করা হয়েছে (যেমন Gina Hinojosa)।",
+  "আপনার ZIP কোড থেকে অঙ্গরাজ্য, কাউন্টি ও সম্ভাব্য শহর জানা যায়, কিন্তু ডিস্ট্রিক্ট নিশ্চিতভাবে জানা যায় না। কয়েকটি অঙ্গরাজ্য 2026-এর জন্য মানচিত্র নতুন করে এঁকেছে, তাই «ধাপে ধাপে» আপনার ডিস্ট্রিক্ট জিজ্ঞেস করে।",
+  "নেভাডা, নিউ হ্যাম্পশায়ার ও উইসকনসিনের জন্য 2026 সালের সাধারণ নির্বাচনের গাইড এখনও পাওয়া যায়নি।",
+  "অনুবাদগুলো AI-এর সাহায্যে তৈরি এবং ভুল থাকতে পারে। সন্দেহ হলে ইংরেজি সংস্করণ দেখুন।"],
+ allGuides:"CAIR Action-এর সব গাইড",
+ foot:"তথ্য 18 অক্টোবর 2026-এ CAIR Action-এর প্রকাশিত গাইড থেকে নেওয়া। CAIR Action-এর সঙ্গে সম্পর্কিত নয়।",
+ wzTitle:"আপনার ব্যালট, ধাপে ধাপে",
+ wzIntro:"আপনার ZIP কোড দিন। আমরা আপনার ব্যালট ক্রম অনুযায়ী দেখাব এবং প্রতিটি পদে CAIR Action-এর অবস্থান জানাব।",
+ zipLabel:"ZIP কোড", zipBtn:"শুরু করুন", zipPrivacy:"আপনার ZIP কোড শুধু এই ডিভাইসেই থাকে।",
+ zipBad:"5 অঙ্কের একটি ZIP কোড দিন।", zipUnknown:"এই ZIP কোডটি পাওয়া যায়নি। নম্বরটি দেখে আবার চেষ্টা করুন।",
+ zipOther:s=>"এই ZIP কোডটি "+s+"-এ। CAIR Action এই অঙ্গরাজ্যের জন্য ভোটার গাইড প্রকাশ করে না।",
+ areaTitle:"আপনার এলাকা", countyLbl:"কাউন্টি", countyPick:"আপনার কাউন্টি বেছে নিন", changeZip:"ZIP কোড বদলান",
+ whyDistricts:"একটি ZIP কোড একাধিক ডিস্ট্রিক্টে ছড়িয়ে থাকতে পারে, তাই দরকার হলে আমরা আপনার ডিস্ট্রিক্ট জিজ্ঞেস করব। আপনার নমুনা ব্যালট বা ভোটার নিবন্ধন কার্ডে ডিস্ট্রিক্টগুলো লেখা থাকে।",
+ orderNote:"পদগুলো আপনার অঙ্গরাজ্যের ব্যালটের সাধারণ ক্রমে সাজানো। আপনার কাউন্টির নমুনা ব্যালটই চূড়ান্ত।",
+ goBtn:"আমার ব্যালট শুরু করুন",
+ stepOf:(i,n)=>"ধাপ "+i+" / "+n,
+ back:"পেছনে", next:"পরবর্তী", finish:"শেষ", notOnBallot:"আমার ব্যালটে নেই", onList:"আমার তালিকায়",
+ distQ:f=>f+"-এর কোন ডিস্ট্রিক্টে আপনি আছেন?",
+ distNo:"আমার ডিস্ট্রিক্ট এখানে নেই", distUnsure:"নিশ্চিত নই",
+ distNoMsg:"এই পদের অন্য ডিস্ট্রিক্টগুলোর জন্য CAIR Action কোনো অবস্থান দেয়নি।",
+ distUnsureMsg:"ঠিকানা দিয়ে আপনার ডিস্ট্রিক্ট খুঁজে নিন, তারপর এই ধাপে ফিরে আসুন।",
+ lookupShort:"আমার ডিস্ট্রিক্ট খুঁজুন",
+ cityQ:"আপনি কোন শহরে ভোট দেন?", cityNone:"অন্য কোনো শহর, বা শহরের বাইরের এলাকা",
+ cityHint:"কিছু ZIP কোড একাধিক শহরে ছড়ানো। আপনার ব্যালটে যে শহর আছে সেটি বেছে নিন।",
+ schoolQ:"আপনি কোন স্কুল ও কলেজ ডিস্ট্রিক্টে আছেন?",
+ schoolHint:"যেগুলো প্রযোজ্য সব বেছে নিন। কোনোটি না হলে বা নিশ্চিত না হলে ফাঁকা রাখুন।",
+ specialQ:"আপনি কি এর কোনো স্থানীয় ডিস্ট্রিক্টে আছেন?",
+ grp:{fed:"ফেডারেল",state:"অঙ্গরাজ্যের পদ",leg:"অঙ্গরাজ্যের আইনসভা",jud:"আদালত",county:"কাউন্টি",city:"শহর",school:"শিক্ষা",special:"স্থানীয় ডিস্ট্রিক্ট",meas:"ব্যালট প্রস্তাব"},
+ doneTitle:"আপনি প্রস্তুত",
+ doneBody:n=>"আপনার তালিকায় "+n+"টি পদ ব্যালটের ক্রমে আছে।",
+ doneUnsure:"এখনও যাচাই করতে হবে", seeList:"আমার তালিকা দেখুন", restart:"আবার শুরু করুন", review:"আমার উত্তরগুলো দেখুন"
+};
+T.so = {
+ groupHint:"Ka saar calaamadda jago kasta oo aan ku jirin warqaddaada codbixinta.",
+ dir:"ltr", langLabel:"Luqadda",
+ tagline:"Taageerooyinka CAIR Action ee doorashada 2026, jago-jago.",
+ eday:"Maalinta Doorashada", edate:"Talaado, 3 Nofeembar 2026",
+ days:n=>n===1?"1 maalin ayaa harsan":n+" maalmood ayaa harsan", today:"Maanta waa Maalinta Doorashada", past:"Maalinta Doorashada way dhaaftay",
+ tabs:{walk:"Tallaabooyin",browse:"Jagooyinka",list:"Liiskayga",about:"Ku saabsan"},
+ yourState:"Gobolkaaga", notPubOpt:"hagaha weli lama daabicin",
+ notPub:s=>"CAIR Action weli ma daabicin hagaha doorashada guud ee 2026 ee "+s+".",
+ notPubHint:"Eeg bogga gobolka si aad u hesho warar cusub marka Maalinta Doorashada soo dhowaato.",
+ pdf:"Hagaha rasmiga ah (PDF)", lookup:"Ka hel warqaddaada codbixinta cinwaankaaga", statePage:"Bogga gobolka",
+ search:"Raadi magac, magaalo ama degmo",
+ fAll:"Dhammaan", fE:"La taageeray", fP:"La door biday", fO:"Diidmo", fM:"Soo-jeedinnada", fMine:"Liiskayga ku jira",
+ sec:{F:"Federaalka",S:"Gobolka",L:"Deegaanka",M:"Soo-jeedinnada codbixinta"},
+ races:n=>n+" jago",
+ localNote:"Jagooyinka iyo soo-jeedinnada deegaanka waxay ku xiran yihiin cinwaankaaga. Isbarbar dhig warqaddaada codbixinta ee tusaalaha ah.",
+ st:{E:"La taageeray",J:"Taageero wadaag ah",W:"Horay u guuleystay",P:"La door biday",X:"Taageero ma leh",O:"Diidmo"},
+ ms:{Y:"Taageero · u codee Haa",N:"Diidmo · u codee Maya",X:"Talo ma leh"},
+ sum:{e:"la taageeray",p:"la door biday",o:"diidmo",m:"soo-jeedin"},
+ add:"Ku dar", added:"Waa la daray", addAria:o=>"Ku dar "+o+" liiskayga", rmAria:o=>"Ka saar "+o+" liiskayga",
+ nores:"Wax ma laga helin. Isku day magaca qoyska, magaalo, ama lambarka degmada oo keliya.",
+ more:n=>"Tus "+n+" kale",
+ listTitle:"Liiskayga",
+ listIntro:"Jagooyinka aad calaamadisay inay ku jiraan warqaddaada codbixinta, sida ay warqadda ugu kala horreeyaan. Liiskan wuxuu ku jiraa taleefankan ama kombiyuutarkan oo keliya.",
+ emptyTitle:"Liiskaagu weli waa madhan yahay",
+ emptyBody:"Ku geli koodhka ZIP-kaaga «Tallaabooyin», ama «Jagooyinka» ku riix «Ku dar» jago kasta oo ku jirta warqaddaada codbixinta.",
+ goWalk:"Ku dhex mar warqaddayda codbixinta",
+ noEnd:"Jagadan taageero kuma jirto",
+ copy:"Koobiyee liiska", copied:"Waa la koobiyeeyay. Ku dheji qoraal ama fariin.", copyFail:"Biraawsarku wuu diiday koobiyeynta. Dooro qoraalka hoose oo koobiyee.",
+ wa:"Ku dir WhatsApp", clear:"Tirtir liiska", clearQ:n=>"Ma ka saartaa dhammaan "+n+" jago liiskaaga?", yes:"Ka saar dhammaan", no:"Hay",
+ shareHead:s=>"Qoraalkayga codbixinta · "+s+" · 3 Nofeembar 2026",
+ shareFoot:"Waxay ku salaysan tahay taageerooyinka CAIR Action ee la daabacay. Ka xaqiiji cairaction.org/endorsements",
+ aboutTitle:"Ku saabsan Sawt", aboutLead:"Carabi ahaan, «Sawt» (صوت) waxay ka dhigan tahay cod iyo codbixin labadaba.",
+ labelsTitle:"Macnaha calaamadaha",
+ labels:{E:"Si xooggan ula jaanqaadaya qiyamka CAIR Action, oo leh taariikh ka go'naansho caddaaladda.",
+  J:"Hagaha wuxuu jagadan u liis gareeyay in ka badan hal musharax oo la taageeray.",
+  P:"Guud ahaan wanaagsan, laakiin si buuxda ugama siman arrimaha muhiimka ah qaarkood. Doorasho ka wanaagsan musharixiinta waxyeelleeya arrimahan.",
+  O:"Wuxuu qaatay mowqif waxyeello leh. CAIR Action waxay si adag u talinaysaa in laga codeeyo.",
+  W:"Hagaha wuxuu ku calaamadeeyay inuu horay u guuleystay. Waxaa loo muujiyay xog ahaan.",
+  X:"Waa la eegay, laakiin musharax si ku filan ula jaanqaadin, ama xog ku filan lama helin."},
+ measuresLabel:"Soo-jeedinnada, «Taageero» waxay ka dhigan tahay u codee Haa, «Diidmo» waxay ka dhigan tahay u codee Maya.",
+ methodLink:"Sida CAIR Action u go'aamiso taageerooyinkeeda (Ingiriisi)",
+ planTitle:"Qorshee codkaaga",
+ plan:[["Hubi inaad diiwaan gashan tahay","Eeg xaaladda diiwaangelintaada ka hor waqtiga kama dambaysta ah ee gobolkaaga.","register","Hubi diiwaangelinta"],
+  ["Hel goobta codbixinta","Ogow halka iyo goorta aad codaynayso, oo ay ku jirto codbixinta hore.","polling","Hel goobta codbixinta"],
+  ["Arag warqaddaada saxda ah","Geli cinwaanka gurigaaga qalabka CAIR Action si aad u aragto jagooyinkaaga oo keliya.","lookup","Fur raadinta cinwaanka"],
+  ["Diyaari liiskaaga","Halkan ku isticmaal «Tallaabooyin», kadibna koobiyee liiska ama naftaada u dir. Goobaha codbixinta qaarkood waxay xaddidaan isticmaalka taleefanka, sidaa darteed nuqul qoran ayaa caawiya.",null,null],
+  ["Wada taga","U fududee waayeelka iyo kuwa markii ugu horreysay codaynaya gaadiid, oo qorshee socodka adigoo tixgelinaya waqtiyada shaqada iyo salaadda.",null,null]],
+ sourceTitle:"Ilaha iyo xadka",
+ source:["Sawt waa caawiye madax-bannaan oo la socda hagayaasha codbixinta ee CAIR Action. CAIR Action ma samayn, ma taageerin, mana dib u eegin.",
+  "Taageerooyinka waxaa laga soo guuriyay hagayaasha doorashada guud ee 2026 ee lagu daabacay cairaction.org, ilaa 18 Oktoobar 2026. Hagayaashu way isbeddeli karaan, ee ka xaqiiji hagaha rasmiga ah ka hor intaadan codayn.",
+  "Magacyada jagooyinka waa la soo gaabiyay si ay ugu habboonaadaan shaashadaha yaryar, gelinnada soo noqnoqday hal mar ayaa la muujiyay, qaar ka mid ah khaladaadka higgaadda ee cadna waa la saxay (tusaale Gina Hinojosa).",
+  "Koodhka ZIP-kaagu wuxuu go'aamiyaa gobolkaaga, kaawntigaaga iyo magaaladaada u badan, laakiin ma sheegi karo degmooyinkaaga si sax ah. Gobollo dhowr ah ayaa khariidadahooda dib u sameeyay 2026, sidaas darteed «Tallaabooyin» ayaa ku weydiinaya degmadaada.",
+  "Hagaha doorashada guud ee 2026 weli lagama helin Nevada, New Hampshire iyo Wisconsin.",
+  "Tarjumaadaha waxaa lagu diyaariyay caawimaad AI, waxaana ku jiri kara khaladaad. Haddii aad shaki qabto, eeg nuqulka Ingiriisiga."],
+ allGuides:"Dhammaan hagayaasha CAIR Action",
+ foot:"Xogta waxaa laga soo guuriyay hagayaasha CAIR Action ee la daabacay 18 Oktoobar 2026. Kuma xirna CAIR Action.",
+ wzTitle:"Warqaddaada codbixinta, tallaabo-tallaabo",
+ wzIntro:"Geli koodhka ZIP-kaaga. Si isku xigta ayaan kuugu dhex mari doonnaa warqaddaada codbixinta, waxaana ku tusi doonnaa mowqifka CAIR Action ee jago kasta.",
+ zipLabel:"Koodhka ZIP", zipBtn:"Bilow", zipPrivacy:"Koodhka ZIP-kaagu wuxuu ku jiraa qalabkan oo keliya.",
+ zipBad:"Geli koodh ZIP ah oo ka kooban 5 lambar.", zipUnknown:"Koodhkaas ZIP lama helin. Hubi lambarka oo isku day mar kale.",
+ zipOther:s=>"Koodhkan ZIP wuxuu ku yaal "+s+". CAIR Action ma daabaco hage codbixineed oo loogu talagalay gobolkaas.",
+ areaTitle:"Deegaankaaga", countyLbl:"Kaawntiga", countyPick:"Dooro kaawntigaaga", changeZip:"Beddel koodhka ZIP",
+ whyDistricts:"Koodhka ZIP wuxuu dhaafi karaa xuduudaha degmooyinka, sidaas darteed waxaan ku weydiin doonnaa degmadaada marka ay muhiim tahay. Degmooyinkaaga waxay ku qoran yihiin warqadda codbixinta ee tusaalaha ah ama kaarka diiwaangelinta.",
+ orderNote:"Jagooyinku waxay u kala horreeyaan sida caadiga ah ee warqadda codbixinta ee gobolkaaga. Warqadda tusaalaha ah ee kaawntigaaga ayaa ah tan kama dambaysta ah.",
+ goBtn:"Bilow warqaddayda",
+ stepOf:(i,n)=>"Tallaabada "+i+" ee "+n,
+ back:"Dib u noqo", next:"Xiga", finish:"Dhammee", notOnBallot:"Kuma jiro warqaddayda", onList:"Liiskayga ayuu ku jiraa",
+ distQ:f=>"Degmadee ee "+f+" ayaad ku jirtaa?",
+ distNo:"Degmadaydu halkan kuma jirto", distUnsure:"Ma hubo",
+ distNoMsg:"CAIR Action ma bixin mowqif degmooyinka kale ee jagadan.",
+ distUnsureMsg:"Ka raadi degmooyinkaaga cinwaankaaga, kadibna ku soo noqo tallaabadan.",
+ lookupShort:"Raadi degmooyinkayga",
+ cityQ:"Magaaladee ayaad ka codaysaa?", cityNone:"Magaalo kale, ama aag aan magaalo ka tirsanayn",
+ cityHint:"Koodhadhka ZIP qaarkood waxay dhaafaan xuduudaha magaalooyinka. Dooro magaalada ku qoran warqaddaada codbixinta.",
+ schoolQ:"Degmooyinkee dugsiyada iyo kulliyadaha ayaad ku jirtaa?",
+ schoolHint:"Dooro dhammaan kuwa khuseeya. Bannaan u daa haddii midna aanu khusayn ama aadan hubin.",
+ specialQ:"Ma ku jirtaa mid ka mid ah degmooyinkan adeegga deegaanka?",
+ grp:{fed:"Federaalka",state:"Jagooyinka gobolka",leg:"Golaha sharci-dejinta gobolka",jud:"Maxkamadaha",county:"Kaawntiga",city:"Magaalada",school:"Waxbarashada",special:"Degmooyinka adeegga",meas:"Soo-jeedinnada"},
+ doneTitle:"Diyaar baad tahay",
+ doneBody:n=>n+" jago ayaa liiskaaga ku jira, sida ay warqadda ugu kala horreeyaan.",
+ doneUnsure:"Weli la hubiyo", seeList:"Eeg liiskayga", restart:"Dib u bilow", review:"Dib u eeg jawaabahayga"
+};
+T.fa = {
+ groupHint:"تیک هر رقابتی را که در برگهٔ رأی شما نیست بردارید.",
+ dir:"rtl", langLabel:"زبان",
+ tagline:"حمایت‌های CAIR Action در انتخابات 2026، رقابت به رقابت.",
+ eday:"روز انتخابات", edate:"سه‌شنبه 3 نوامبر 2026",
+ days:n=>n+" روز مانده", today:"امروز روز انتخابات است", past:"روز انتخابات گذشته است",
+ tabs:{walk:"گام به گام",browse:"همه رقابت‌ها",list:"فهرست من",about:"درباره"},
+ yourState:"ایالت شما", notPubOpt:"راهنما هنوز منتشر نشده",
+ notPub:s=>"CAIR Action هنوز راهنمای انتخابات عمومی 2026 را برای "+s+" منتشر نکرده است.",
+ notPubHint:"با نزدیک شدن روز انتخابات، برای اطلاعات تازه صفحهٔ ایالت را ببینید.",
+ pdf:"راهنمای رسمی (PDF)", lookup:"برگهٔ رأی خود را با نشانی پیدا کنید", statePage:"صفحهٔ ایالت",
+ search:"جست‌وجوی نام، شهر یا حوزه",
+ fAll:"همه", fE:"مورد حمایت", fP:"ترجیحی", fO:"مخالفت", fM:"طرح‌ها", fMine:"در فهرست من",
+ sec:{F:"فدرال",S:"ایالتی",L:"محلی",M:"طرح‌ها و همه‌پرسی‌ها"},
+ races:n=>n+" رقابت",
+ localNote:"رقابت‌ها و طرح‌های محلی به نشانی شما بستگی دارند. آن‌ها را با نمونهٔ برگهٔ رأی خود مطابقت دهید.",
+ st:{E:"مورد حمایت",J:"حمایت مشترک",W:"پیش‌تر برنده شده",P:"ترجیحی",X:"بدون حمایت",O:"مخالفت"},
+ ms:{Y:"حمایت · رأی «بله»",N:"مخالفت · رأی «نه»",X:"بدون توصیه"},
+ sum:{e:"مورد حمایت",p:"ترجیحی",o:"مخالفت",m:"طرح"},
+ add:"افزودن", added:"افزوده شد", addAria:o=>"افزودن "+o+" به فهرست من", rmAria:o=>"حذف "+o+" از فهرست من",
+ nores:"نتیجه‌ای پیدا نشد. نام خانوادگی، نام شهر یا فقط شمارهٔ حوزه را امتحان کنید.",
+ more:n=>n+" مورد دیگر",
+ listTitle:"فهرست من",
+ listIntro:"رقابت‌هایی که مشخص کرده‌اید در برگهٔ رأی شما هستند، به ترتیب برگهٔ رأی. این فهرست فقط روی همین گوشی یا رایانه می‌ماند.",
+ emptyTitle:"فهرست شما هنوز خالی است",
+ emptyBody:"در «گام به گام» کد پستی خود را وارد کنید، یا در «همه رقابت‌ها» روی «افزودن» هر رقابتی که در برگهٔ رأی شماست بزنید.",
+ goWalk:"مرور گام به گام برگهٔ رأی من",
+ noEnd:"در این رقابت حمایتی اعلام نشده",
+ copy:"کپی فهرست", copied:"کپی شد. آن را در یادداشت یا پیام بچسبانید.", copyFail:"مرورگر اجازهٔ کپی نداد. متن زیر را انتخاب و کپی کنید.",
+ wa:"ارسال در واتساپ", clear:"پاک کردن فهرست", clearQ:n=>"همهٔ "+n+" رقابت از فهرست شما حذف شود؟", yes:"حذف همه", no:"نگه دار",
+ shareHead:s=>"یادداشت‌های رأی من · "+s+" · 3 نوامبر 2026",
+ shareFoot:"بر پایهٔ حمایت‌های منتشرشدهٔ CAIR Action. در cairaction.org/endorsements بررسی کنید",
+ aboutTitle:"دربارهٔ «صوت»", aboutLead:"«صوت» در عربی هم به معنای صدا است و هم رأی.",
+ labelsTitle:"معنای برچسب‌ها",
+ labels:{E:"به‌شدت با ارزش‌های CAIR Action هم‌سو است و سابقهٔ تعهد به عدالت دارد.",
+  J:"راهنما برای این رقابت بیش از یک نامزد مورد حمایت را نام برده است.",
+  P:"در کل مثبت، اما در برخی مسائل مهم کاملاً هم‌سو نیست. گزینه‌ای بهتر از نامزدهایی که به این آرمان‌ها آسیب می‌زنند.",
+  O:"مواضع زیان‌باری گرفته است. CAIR Action قویاً توصیه می‌کند به او رأی ندهید.",
+  W:"در راهنما به‌عنوان برندهٔ قبلی مشخص شده و فقط برای آگاهی نشان داده می‌شود.",
+  X:"بررسی شده، اما هیچ نامزدی به اندازهٔ کافی هم‌سو نبود یا اطلاعات کافی وجود نداشت."},
+ measuresLabel:"در طرح‌ها و همه‌پرسی‌ها، «حمایت» یعنی رأی «بله» و «مخالفت» یعنی رأی «نه».",
+ methodLink:"CAIR Action چگونه حمایت‌هایش را تعیین می‌کند (انگلیسی)",
+ planTitle:"رأی دادن را برنامه‌ریزی کنید",
+ plan:[["از ثبت‌نام خود مطمئن شوید","پیش از مهلت ایالت خود، وضعیت ثبت‌نامتان را بررسی کنید.","register","بررسی ثبت‌نام"],
+  ["محل رأی‌گیری را پیدا کنید","ببینید کجا و چه زمانی رأی می‌دهید، از جمله رأی‌گیری زودهنگام.","polling","یافتن محل رأی‌گیری"],
+  ["برگهٔ رأی دقیق خود را ببینید","نشانی خانه را در ابزار CAIR Action وارد کنید تا فقط رقابت‌های خودتان را ببینید.","lookup","جست‌وجو با نشانی"],
+  ["فهرست خود را آماده کنید","از «گام به گام» استفاده کنید، سپس فهرست را کپی کنید یا برای خودتان بفرستید. برخی محل‌های رأی‌گیری استفاده از تلفن را محدود می‌کنند، پس یک نسخهٔ نوشته‌شده کمک می‌کند.",null,null],
+  ["با هم بروید","سالمندان و کسانی را که بار اول رأی می‌دهند همراهی کنید و رفت‌وآمد را با ساعت کار و نماز هماهنگ کنید.",null,null]],
+ sourceTitle:"منابع و محدودیت‌ها",
+ source:["«صوت» همراهی مستقل برای راهنماهای رأی‌دهندگان CAIR Action است و CAIR Action آن را نساخته، تأیید یا بازبینی نکرده است.",
+  "حمایت‌ها از راهنماهای انتخابات عمومی 2026 منتشرشده در cairaction.org تا 18 اکتبر 2026 برداشته شده‌اند. راهنماها ممکن است تغییر کنند، پس پیش از رأی دادن راهنمای رسمی را بررسی کنید.",
+  "نام سمت‌ها برای صفحه‌های کوچک کوتاه شده، موارد تکراری یک بار نشان داده شده و چند غلط املایی آشکار اصلاح شده است (مثلاً Gina Hinojosa).",
+  "کد پستی شما ایالت، شهرستان و شهر احتمالی‌تان را مشخص می‌کند، اما حوزه‌های انتخاباتی را دقیق تعیین نمی‌کند. چند ایالت نقشه‌هایشان را برای 2026 دوباره کشیده‌اند، به همین دلیل «گام به گام» حوزهٔ شما را می‌پرسد.",
+  "راهنمای انتخابات عمومی 2026 برای نوادا، نیوهمپشایر و ویسکانسین هنوز در دسترس نبود.",
+  "ترجمه‌ها با کمک هوش مصنوعی آماده شده‌اند و ممکن است اشتباه داشته باشند. در صورت تردید، نسخهٔ انگلیسی را ببینید."],
+ allGuides:"همهٔ راهنماهای CAIR Action",
+ foot:"داده‌ها در 18 اکتبر 2026 از راهنماهای منتشرشدهٔ CAIR Action برداشته شده است. وابسته به CAIR Action نیست.",
+ wzTitle:"برگهٔ رأی شما، گام به گام",
+ wzIntro:"کد پستی (ZIP) خود را وارد کنید. برگهٔ رأی شما را به ترتیب مرور می‌کنیم و موضع CAIR Action را در هر رقابت نشان می‌دهیم.",
+ zipLabel:"کد پستی (ZIP)", zipBtn:"شروع", zipPrivacy:"کد پستی شما فقط روی همین دستگاه می‌ماند.",
+ zipBad:"یک کد پستی 5 رقمی وارد کنید.", zipUnknown:"این کد پستی پیدا نشد. شماره را بررسی کنید و دوباره امتحان کنید.",
+ zipOther:s=>"این کد پستی در "+s+" است. CAIR Action برای این ایالت راهنمای رأی‌دهندگان منتشر نمی‌کند.",
+ areaTitle:"منطقهٔ شما", countyLbl:"شهرستان (County)", countyPick:"شهرستان خود را انتخاب کنید", changeZip:"تغییر کد پستی",
+ whyDistricts:"یک کد پستی ممکن است در چند حوزه قرار بگیرد، پس هر جا لازم باشد حوزهٔ شما را می‌پرسیم. حوزه‌های شما روی نمونهٔ برگهٔ رأی یا کارت ثبت‌نام رأی‌دهنده نوشته شده‌اند.",
+ orderNote:"رقابت‌ها به ترتیب معمول برگهٔ رأی ایالت شما آمده‌اند. نمونهٔ برگهٔ رأی شهرستان شما ملاک نهایی است.",
+ goBtn:"مرور برگهٔ رأی من",
+ stepOf:(i,n)=>"گام "+i+" از "+n,
+ back:"بازگشت", next:"بعدی", finish:"پایان", notOnBallot:"در برگهٔ رأی من نیست", onList:"در فهرست من",
+ distQ:f=>"در کدام حوزهٔ "+f+" هستید؟",
+ distNo:"حوزهٔ من اینجا نیست", distUnsure:"مطمئن نیستم",
+ distNoMsg:"CAIR Action برای حوزه‌های دیگر این رقابت موضعی اعلام نکرده است.",
+ distUnsureMsg:"حوزه‌های خود را با نشانی پیدا کنید و سپس به این گام برگردید.",
+ lookupShort:"یافتن حوزه‌های من",
+ cityQ:"در کدام شهر رأی می‌دهید؟", cityNone:"شهری دیگر یا منطقه‌ای خارج از محدودهٔ شهر",
+ cityHint:"برخی کدهای پستی در چند شهر قرار دارند. شهری را که روی برگهٔ رأی شماست انتخاب کنید.",
+ schoolQ:"در کدام حوزه‌های آموزشی و کالج هستید؟",
+ schoolHint:"همهٔ موارد مربوط را انتخاب کنید. اگر هیچ‌کدام نیست یا مطمئن نیستید، خالی بگذارید.",
+ specialQ:"آیا در یکی از این حوزه‌های خدماتی محلی هستید؟",
+ grp:{fed:"فدرال",state:"مقام‌های ایالتی",leg:"مجلس ایالتی",jud:"دادگاه‌ها",county:"شهرستان",city:"شهر",school:"آموزش",special:"حوزه‌های خدماتی",meas:"طرح‌ها و همه‌پرسی‌ها"},
+ doneTitle:"آماده‌اید",
+ doneBody:n=>n+" رقابت به ترتیب برگهٔ رأی در فهرست شماست.",
+ doneUnsure:"هنوز باید بررسی شود", seeList:"دیدن فهرست من", restart:"شروع دوباره", review:"مرور پاسخ‌هایم"
+};
+T.tr = {
+ groupHint:"Oy pusulanızda olmayan yarışların işaretini kaldırın.",
+ dir:"ltr", langLabel:"Dil",
+ tagline:"CAIR Action'ın 2026 seçim destekleri, yarış yarış.",
+ eday:"Seçim Günü", edate:"Salı, 3 Kasım 2026",
+ days:n=>n+" gün kaldı", today:"Bugün Seçim Günü", past:"Seçim Günü geçti",
+ tabs:{walk:"Adım adım",browse:"Tüm yarışlar",list:"Listem",about:"Hakkında"},
+ yourState:"Eyaletiniz", notPubOpt:"rehber henüz yayımlanmadı",
+ notPub:s=>"CAIR Action, "+s+" için 2026 genel seçim rehberini henüz yayımlamadı.",
+ notPubHint:"Seçim Günü yaklaştıkça güncellemeler için eyalet sayfasına bakın.",
+ pdf:"Resmî rehber (PDF)", lookup:"Adresinizle oy pusulanızı bulun", statePage:"Eyalet sayfası",
+ search:"İsim, şehir veya bölge arayın",
+ fAll:"Tümü", fE:"Destekleniyor", fP:"Tercih ediliyor", fO:"Karşı", fM:"Önergeler", fMine:"Listemde",
+ sec:{F:"Federal",S:"Eyalet",L:"Yerel",M:"Oylamaya sunulan önergeler"},
+ races:n=>n+" yarış",
+ localNote:"Yerel yarışlar ve önergeler adresinize göre değişir. Örnek oy pusulanızla karşılaştırın.",
+ st:{E:"Destekleniyor",J:"Ortak destek",W:"Zaten kazandı",P:"Tercih ediliyor",X:"Destek yok",O:"Karşı"},
+ ms:{Y:"Destek · Evet oyu verin",N:"Karşı · Hayır oyu verin",X:"Tavsiye yok"},
+ sum:{e:"destekleniyor",p:"tercih ediliyor",o:"karşı",m:"önerge"},
+ add:"Ekle", added:"Eklendi", addAria:o=>o+" yarışını listeme ekle", rmAria:o=>o+" yarışını listemden çıkar",
+ nores:"Eşleşen yarış yok. Soyadı, şehir ya da yalnızca bölge numarasını deneyin.",
+ more:n=>n+" tane daha göster",
+ listTitle:"Listem",
+ listIntro:"Oy pusulanızda olduğunu işaretlediğiniz yarışlar, pusuladaki sırayla. Bu liste yalnızca bu telefonda veya bilgisayarda kalır.",
+ emptyTitle:"Listeniz henüz boş",
+ emptyBody:"«Adım adım» bölümünde posta kodunuzu girin ya da «Tüm yarışlar»da oy pusulanızdaki her yarış için «Ekle»ye dokunun.",
+ goWalk:"Oy pusulamı adım adım gör",
+ noEnd:"Bu yarışta destek yok",
+ copy:"Listeyi kopyala", copied:"Kopyalandı. Bir nota veya mesaja yapıştırın.", copyFail:"Tarayıcınız kopyalamayı engelledi. Aşağıdaki metni seçip kopyalayın.",
+ wa:"WhatsApp'ta gönder", clear:"Listeyi temizle", clearQ:n=>"Listenizdeki "+n+" yarışın tamamı kaldırılsın mı?", yes:"Tümünü kaldır", no:"Vazgeç",
+ shareHead:s=>"Oy notlarım · "+s+" · 3 Kasım 2026",
+ shareFoot:"CAIR Action'ın yayımladığı desteklere dayanır. cairaction.org/endorsements adresinden doğrulayın",
+ aboutTitle:"Sawt hakkında", aboutLead:"Sawt (صوت), Arapçada hem ses hem de oy demektir.",
+ labelsTitle:"Etiketlerin anlamı",
+ labels:{E:"CAIR Action'ın değerleriyle güçlü biçimde örtüşür ve adalete bağlılık geçmişi vardır.",
+  J:"Rehber bu yarış için birden fazla desteklenen aday listeliyor.",
+  P:"Genel olarak olumlu, ancak bazı kritik konularda tam olarak örtüşmüyor. Bu davalara zarar veren adaylardan daha iyi bir seçenek.",
+  O:"Zararlı tutumlar benimsemiş. CAIR Action bu adaya karşı oy verilmesini güçlü biçimde tavsiye ediyor.",
+  W:"Rehberde zaten kazanmış olarak işaretlenmiş. Bilgi amacıyla gösteriliyor.",
+  X:"İncelendi, ancak hiçbir aday yeterince örtüşmedi veya yeterli bilgi yoktu."},
+ measuresLabel:"Önergelerde «Destek» Evet oyu, «Karşı» Hayır oyu anlamına gelir.",
+ methodLink:"CAIR Action desteklerine nasıl karar veriyor (İngilizce)",
+ planTitle:"Oyunuzu planlayın",
+ plan:[["Kaydınızı doğrulayın","Eyaletinizin son başvuru tarihinden önce seçmen kaydınızı kontrol edin.","register","Kaydı kontrol et"],
+  ["Sandık yerinizi bulun","Erken oy dahil, nerede ve ne zaman oy vereceğinizi öğrenin.","polling","Sandık yerini bul"],
+  ["Tam oy pusulanızı görün","Yalnızca sizin yarışlarınızı görmek için CAIR Action aracına ev adresinizi girin.","lookup","Adresle aramayı aç"],
+  ["Listenizi hazırlayın","Buradaki «Adım adım» bölümünü kullanın, sonra listeyi kopyalayın ya da kendinize gönderin. Bazı sandık yerleri telefon kullanımını kısıtlar; yazılı bir kopya işe yarar.",null,null],
+  ["Birlikte gidin","Yaşlılara ve ilk kez oy verenlere ulaşım sağlayın; gidişi iş ve namaz vakitlerine göre planlayın.",null,null]],
+ sourceTitle:"Kaynaklar ve sınırlar",
+ source:["Sawt, CAIR Action seçmen rehberlerine eşlik eden bağımsız bir araçtır. CAIR Action tarafından hazırlanmamış, onaylanmamış veya incelenmemiştir.",
+  "Destekler, cairaction.org'da yayımlanan 2026 genel seçim rehberlerinden 18 Ekim 2026 itibarıyla aktarılmıştır. Rehberler değişebilir; oy vermeden önce resmî rehberden doğrulayın.",
+  "Makam adları küçük ekranlar için kısaltıldı, tekrarlanan kayıtlar bir kez gösterildi ve birkaç bariz yazım hatası düzeltildi (ör. Gina Hinojosa).",
+  "Posta kodunuz eyaletinizi, ilçenizi (county) ve muhtemel şehrinizi belirler, ancak seçim bölgelerinizi kesin olarak gösteremez. Birkaç eyalet 2026 için haritalarını yeniden çizdi; bu yüzden «Adım adım» hangi bölgede olduğunuzu sorar.",
+  "Nevada, New Hampshire ve Wisconsin için 2026 genel seçim rehberi henüz yayımlanmamıştı.",
+  "Çeviriler yapay zekâ yardımıyla hazırlandı ve hata içerebilir. Şüphe duyarsanız İngilizce sürüme bakın."],
+ allGuides:"Tüm CAIR Action rehberleri",
+ foot:"Veriler 18 Ekim 2026'da CAIR Action'ın yayımlanmış rehberlerinden aktarıldı. CAIR Action ile bağlantılı değildir.",
+ wzTitle:"Oy pusulanız, adım adım",
+ wzIntro:"Posta kodunuzu (ZIP) girin. Oy pusulanızı sırasıyla gezip her yarışta CAIR Action'ın tutumunu göstereceğiz.",
+ zipLabel:"Posta kodu (ZIP)", zipBtn:"Başla", zipPrivacy:"Posta kodunuz yalnızca bu cihazda kalır.",
+ zipBad:"5 haneli bir posta kodu girin.", zipUnknown:"Bu posta kodu bulunamadı. Numarayı kontrol edip tekrar deneyin.",
+ zipOther:s=>"Bu posta kodu "+s+" eyaletinde. CAIR Action bu eyalet için seçmen rehberi yayımlamıyor.",
+ areaTitle:"Bölgeniz", countyLbl:"İlçe (County)", countyPick:"İlçenizi seçin", changeZip:"Posta kodunu değiştir",
+ whyDistricts:"Bir posta kodu birden fazla seçim bölgesine yayılabilir; bu yüzden gerektiğinde hangi bölgede olduğunuzu soracağız. Bölgeleriniz örnek oy pusulanızda veya seçmen kayıt kartınızda yazar.",
+ orderNote:"Yarışlar eyaletinizin oy pusulasındaki olağan sırayla gösterilir. Kesin sıra için ilçenizin örnek oy pusulasına bakın.",
+ goBtn:"Oy pusulamı başlat",
+ stepOf:(i,n)=>"Adım "+i+" / "+n,
+ back:"Geri", next:"İleri", finish:"Bitir", notOnBallot:"Oy pusulamda yok", onList:"Listemde",
+ distQ:f=>f+" için hangi bölgedesiniz?",
+ distNo:"Bölgem burada yok", distUnsure:"Emin değilim",
+ distNoMsg:"CAIR Action bu yarışın diğer bölgeleri için bir tutum belirtmedi.",
+ distUnsureMsg:"Bölgelerinizi adresinizle bulun, sonra bu adıma dönün.",
+ lookupShort:"Bölgelerimi bul",
+ cityQ:"Hangi şehirde oy veriyorsunuz?", cityNone:"Başka bir şehir ya da belediye sınırları dışı",
+ cityHint:"Bazı posta kodları birden fazla şehre yayılır. Oy pusulanızdaki şehri seçin.",
+ schoolQ:"Hangi okul ve kolej bölgelerindesiniz?",
+ schoolHint:"Geçerli olanların hepsini seçin. Hiçbiri değilse veya emin değilseniz boş bırakın.",
+ specialQ:"Bu yerel hizmet bölgelerinden birinde misiniz?",
+ grp:{fed:"Federal",state:"Eyalet makamları",leg:"Eyalet meclisi",jud:"Mahkemeler",county:"İlçe (County)",city:"Şehir",school:"Eğitim",special:"Yerel hizmet bölgeleri",meas:"Önergeler"},
+ doneTitle:"Hazırsınız",
+ doneBody:n=>"Listenizde oy pusulası sırasıyla "+n+" yarış var.",
+ doneUnsure:"Henüz kontrol edilecekler", seeList:"Listemi gör", restart:"Baştan başla", review:"Cevaplarımı gözden geçir"
+};
+
+/* ================= state ================= */
+const store = {
+  get(k){ try{ return window.localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ window.localStorage.setItem(k,v); }catch(e){} },
+  del(k){ try{ window.localStorage.removeItem(k); }catch(e){} }
+};
+const loadJSON = k => { try{ return JSON.parse(store.get(k)||"null"); }catch(e){ return null; } };
+let lang = store.get("sawt.lang"); if(!T[lang]) lang = "en";
+let st = store.get("sawt.state"); if(!GUIDE_STATES.includes(st)) st = "CA";
+let saved = loadJSON("sawt.list") || {};
+let wz = loadJSON("sawt.wz");
+let filter = "all", query = "", view = "walk", showAllLocal = false;
+let confirmOpen = false, copyMsg = "", showFallback = false, zipErr = "", zipVal = "";
+const h0 = (location.hash||"").replace("#","");
+if(["walk","browse","list","about"].includes(h0)) view = h0; else if(h0==="guide") view = "browse";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const t = () => T[lang];
+const uniq = a => [...new Set(a)];
+const natural = (a,b) => String(a).localeCompare(String(b), "en", {numeric:true});
+const ICON = {
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.6 19z"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
+  walk:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16v9H4zM8 11V4h8v7M10 7h4"/></svg>',
+  browse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 1.5 1.5L8 6M4 13l1.5 1.5L8 12M4 19l1.5 1.5L8 18M11 7h9M11 13h9M11 19h9"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
+  arrow:'<svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  arrowBack:'<svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
+};
+
+/* ================= data ================= */
+const RC = {};
+function contests(code){
+  if(RC[code]) return RC[code];
+  const d = DATA[code];
+  const out = !d ? [] : d.c.map((c,i)=>{
+    const o = {i, sec:c.s, office:c.o, fam:c.f, dist:c.d||"", rank:c.r, grp:c.g, jt:c.j||"st", counties:c.c||[], city:c.y||"", body:c.b||""};
+    if(c.s==="M"){ o.key = code+"|M|"+c.o+"|"+c.l; o.status = c.p; o.loc = c.l; o.desc = c.x||""; o.cands = []; }
+    else { o.key = code+"|"+c.s+"|"+c.o; o.cands = c.n.map(n=>({name:n[0], status:n[1], note:n[2]||""})).sort((a,b)=>ST[a.status].rank-ST[b.status].rank); }
+    o.hay = norm([o.office, o.loc||"", o.desc||""].concat(o.cands.map(x=>x.name)).join(" "));
+    return o;
+  });
+  return (RC[code] = out);
+}
+function byKey(key){ return contests(key.split("|")[0]).find(c=>c.key===key); }
+function counts(code){
+  const c = {e:0,p:0,o:0,m:0};
+  contests(code).forEach(r=>{
+    if(r.sec==="M"){ if(r.status!=="X") c.m++; return; }
+    r.cands.forEach(x=>{ if("EJW".includes(x.status)) c.e++; else if(x.status==="P") c.p++; else if(x.status==="O") c.o++; });
+  });
+  return c;
+}
+
+/* ZIP lookup: 3-digit prefix gives the state; per-state table gives county and relevant city names */
+const Z3 = {}; for(let i=0;i<ZIP3.length;i+=5) Z3[ZIP3.substr(i,3)] = ZIP3.substr(i+3,2);
+const ZT = {};
+function zipTable(code){
+  if(ZT[code]) return ZT[code];
+  const z = ZIPS[code]; const map = new Map(); let prev = 0;
+  if(z && z.z) z.z.split(";").forEach(e=>{
+    const p = e.split(","); const n = prev + parseInt(p[0],36); prev = n;
+    map.set(String(n).padStart(5,"0"), {county:z.co[parseInt(p[1],36)], cities:p.slice(2).map(x=>z.ci[parseInt(x,36)])});
+  });
+  return (ZT[code] = {map, counties: z ? z.co : []});
+}
+function lookupZip(zip){
+  const code = Z3[zip.slice(0,3)];
+  if(!code) return {err:"unknown"};
+  if(!GUIDE_STATES.includes(code)) return {err:"other", st:code};
+  const hit = zipTable(code).map.get(zip);
+  return {st:code, county: hit ? hit.county : null, cities: hit ? hit.cities : []};
+}
+
+/* ================= shared render bits ================= */
+function chip(status){ return '<span class="chip '+ST[status].cls+'">'+esc(t().st[status])+'</span>'; }
+function mchip(status){ return '<span class="chip '+MS[status]+'">'+esc(t().ms[status])+'</span>'; }
+function candList(c){
+  return '<ul class="cands">'+c.cands.map(x=>'<li class="cand '+x.status.toLowerCase()+'"><span class="cname en"><bdi>'+esc(x.name)+'</bdi></span>'+chip(x.status)+'</li>'+(x.note?'<li class="note en" dir="ltr">'+esc(x.note)+'</li>':'')).join("")+'</ul>';
+}
+function measureBody(c){
+  return '<p class="loc en"><bdi>'+esc(c.loc)+'</bdi></p><div>'+mchip(c.status)+'</div>'+(c.desc?'<p class="desc en" lang="en" dir="ltr">'+esc(c.desc)+'</p>':'');
+}
+function persist(){ store.set("sawt.list", JSON.stringify(saved)); }
+function saveWz(){ if(wz) store.set("sawt.wz", JSON.stringify(wz)); else store.del("sawt.wz"); }
+function loadFont(l){
+  if(!FONT_URL[l] || document.getElementById("font-"+l)) return;
+  const k = document.createElement("link"); k.rel = "stylesheet"; k.href = FONT_URL[l]; k.id = "font-"+l;
+  document.head.appendChild(k);
+}
+function daysLeft(){
+  const now = new Date(); const a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((new Date(2026,10,3) - a)/86400000);
+}
+function renderChrome(){
+  const L = t();
+  loadFont(lang);
+  document.documentElement.setAttribute("lang", lang);
+  document.documentElement.setAttribute("dir", L.dir);
+  $("tagline").textContent = L.tagline;
+  $("langLbl").textContent = L.langLabel;
+  $("langSel").innerHTML = LANGS.map(([k,n])=>'<option value="'+k+'" lang="'+k+'"'+(k===lang?' selected':'')+'>'+esc(n)+'</option>').join("");
+  const n = daysLeft();
+  const cnt = n>0 ? L.days(n) : n===0 ? L.today : L.past;
+  $("eday").innerHTML = '<span class="when">'+esc(L.eday)+' · '+esc(L.edate)+'</span><span class="count">'+esc(cnt)+'</span>';
+  $("q").placeholder = L.search; $("q").setAttribute("aria-label", L.search);
+  $("chips").setAttribute("aria-label", L.search);
+  renderChips(); renderTabs();
+}
+function renderTabs(){
+  const L = t(); const n = Object.keys(saved).length;
+  const tab = (k,ic,extra)=>'<button type="button" class="tab" data-view="'+k+'"'+(view===k?' aria-current="page"':'')+'>'+ic+'<span>'+esc(L.tabs[k])+'</span>'+(extra||"")+'</button>';
+  $("tabs").innerHTML = tab("walk",ICON.walk) + tab("browse",ICON.browse) + tab("list",ICON.list, n?'<span class="badge">'+n+'</span>':"") + tab("about",ICON.info);
+}
+
+/* ================= step by step ================= */
+function buildSteps(w){
+  const all = contests(w.st);
+  const inCounty = c => c.counties.includes(w.county);
+  const inc = c => {
+    switch(c.jt){
+      case "st": return true;
+      case "rg": case "co": return inCounty(c);
+      case "ci": return inCounty(c) && w.city===c.city;
+      case "sc": return inCounty(c) && (w.schools||[]).includes(c.body);
+      case "sp": return inCounty(c) && (w.specials||[]).includes(c.body);
+    }
+    return false;
+  };
+  const steps = []; const fams = new Map();
+  all.filter(inc).forEach(c=>{
+    if(c.dist){
+      const fk = c.grp+"|"+c.fam;
+      let s = fams.get(fk);
+      if(!s){ s = {type:"dist", key:"d|"+fk, fam:c.fam, rank:c.rank, i:c.i, grp:c.grp, opts:[]}; fams.set(fk,s); steps.push(s); }
+      s.opts.push(c);
+    } else steps.push({type:"contest", key:c.key, c, rank:c.rank, i:c.i, grp:c.grp});
+  });
+  steps.forEach(s=>{ if(s.type==="dist") s.opts.sort((a,b)=>natural(a.dist,b.dist)); });
+  const choice = (jt, type, grp, field) => {
+    const pool = all.filter(c=>c.jt===jt && inCounty(c));
+    const opts = uniq(pool.map(c=>c[field])).sort(natural);
+    if(opts.length) steps.push({type, key:"_"+type, opts, rank:Math.min(...pool.map(c=>c.rank)), i:-1, grp});
+  };
+  choice("ci","city","city","city");
+  choice("sc","school","school","body");
+  choice("sp","special","special","body");
+  steps.sort((a,b)=>a.rank-b.rank || a.i-b.i);
+  /* long runs of same-level contests (e.g. dozens of judges) become one checklist step */
+  const out = [];
+  for(let k=0;k<steps.length;){
+    const s = steps[k];
+    let j = k;
+    while(j<steps.length && steps[j].type==="contest" && s.type==="contest" && steps[j].rank===s.rank && s.grp!=="meas") j++;
+    if(j-k>=4){ out.push({type:"group", key:"g|"+s.rank, rank:s.rank, i:s.i, grp:s.grp, items:steps.slice(k,j).map(x=>x.c)}); k = j; }
+    else { out.push(s); k++; }
+  }
+  return out;
+}
+/* drop saved contests that no longer apply after an area answer changes */
+function pruneSaved(){
+  if(!wz || !DATA[wz.st]) return;
+  const keep = new Set();
+  buildSteps(wz).forEach(s=>{ if(s.type==="contest") keep.add(s.key); if(s.type==="dist") s.opts.forEach(o=>keep.add(o.key)); });
+  contests(wz.st).forEach(c=>{
+    if(["ci","sc","sp"].includes(c.jt) && c.counties.includes(wz.county) && saved[c.key] && !keep.has(c.key)) delete saved[c.key];
+  });
+  persist();
+}
+/* city step: exact match on the ZIP's city names; school/district step: the city name appears as a whole word */
+function cityExact(name){ return (wz.cities||[]).some(c=>norm(c)===norm(name)); }
+function cityMatch(name){
+  const n = norm(name);
+  return (wz.cities||[]).some(c=>c && new RegExp("(^|[^a-z])"+norm(c).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"($|[^a-z])").test(n));
+}
+function renderWalk(){
+  const L = t(); const box = $("walkpage");
+  if(!wz){
+    box.innerHTML =
+      '<h2 class="page-h">'+esc(L.wzTitle)+'</h2><p class="intro">'+esc(L.wzIntro)+'</p>'+
+      '<form class="zipform" id="zipForm" novalidate><label class="lbl" for="zipIn">'+esc(L.zipLabel)+'</label>'+
+      '<div class="ziprow"><input id="zipIn" size="6" inputmode="numeric" pattern="[0-9]*" maxlength="5" autocomplete="postal-code" value="'+esc(zipVal)+'" aria-describedby="zipErr"><button class="btn" type="submit">'+esc(L.zipBtn)+ICON.arrow+'</button></div>'+
+      '<p class="err" id="zipErr" role="alert">'+esc(zipErr)+'</p><p class="fine">'+esc(L.zipPrivacy)+'</p></form>'+
+      '<p class="fine">'+esc(L.orderNote)+'</p>';
+    return;
+  }
+  if(wz.i < 0 || !DATA[wz.st]){ renderArea(box); return; }
+  const steps = buildSteps(wz);
+  if(wz.i >= steps.length){ renderDone(box, steps); return; }
+  const s = steps[wz.i]; const n = steps.length;
+  let html = '<div class="wz-top"><span class="wz-grp">'+esc(L.grp[s.grp]||"")+'</span><span>'+esc(L.stepOf(wz.i+1,n))+'</span></div>'+
+    '<div class="bar" role="progressbar" aria-valuemin="1" aria-valuemax="'+n+'" aria-valuenow="'+(wz.i+1)+'"><span style="width:'+Math.round((wz.i+1)/n*100)+'%"></span></div>';
+  html += '<article class="wz-card">';
+  if(s.type==="contest"){
+    const c = s.c;
+    html += '<h2 class="wz-office en" id="wzHead" tabindex="-1"><bdi>'+esc(c.office)+'</bdi></h2>'+(c.sec==="M"?measureBody(c):candList(c));
+    if(saved[c.key]) html += '<span class="onlist">'+ICON.check+esc(L.onList)+'</span>';
+  } else if(s.type==="group"){
+    const off = new Set((wz.ans||{})[s.key]||[]);
+    html += '<h2 class="wz-q" id="wzHead" tabindex="-1">'+esc(L.grp[s.grp]||"")+' · '+s.items.length+'</h2><p class="fine">'+esc(L.groupHint)+'</p><div class="optlist">'+
+      s.items.map(c=>'<label class="check top"><input type="checkbox" data-gk="'+esc(s.key)+'" data-ck="'+esc(c.key)+'"'+(off.has(c.key)?'':' checked')+'><div class="gitem"><div class="office en"><bdi>'+esc(c.office)+'</bdi></div>'+
+        c.cands.map(x=>'<div class="cand '+x.status.toLowerCase()+'"><span class="cname en"><bdi>'+esc(x.name)+'</bdi></span>'+chip(x.status)+'</div>').join("")+'</div></label>').join("")+'</div>';
+  } else if(s.type==="dist"){
+    const ans = (wz.ans||{})[s.key];
+    html += '<h2 class="wz-q" id="wzHead" tabindex="-1">'+esc(L.distQ(s.fam))+'</h2><div class="opts" role="group">'+
+      s.opts.map(o=>'<button type="button" class="opt en" data-dist="'+esc(o.key)+'" aria-pressed="'+(ans===o.key)+'"><bdi>'+esc(o.dist)+'</bdi></button>').join("")+
+      '<button type="button" class="opt" data-dist="none" aria-pressed="'+(ans==="none")+'">'+esc(L.distNo)+'</button>'+
+      '<button type="button" class="opt" data-dist="unsure" aria-pressed="'+(ans==="unsure")+'">'+esc(L.distUnsure)+'</button></div>';
+    const chosen = s.opts.find(o=>o.key===ans);
+    if(chosen) html += '<div class="picked"><h3 class="office en"><bdi>'+esc(chosen.office)+'</bdi></h3>'+candList(chosen)+'</div>';
+    else if(ans==="none") html += '<p class="msg">'+esc(L.distNoMsg)+'</p>';
+    else if(ans==="unsure") html += '<p class="msg">'+esc(L.distUnsureMsg)+'</p>';
+    html += '<div><a class="linkbtn" href="'+URLS.lookup+'" target="_blank" rel="noopener">'+ICON.out+esc(L.lookupShort)+'</a></div>';
+  } else if(s.type==="city"){
+    if(wz.city===undefined || wz.city===null){ wz.city = s.opts.find(cityExact) || ""; saveWz(); }
+    html += '<h2 class="wz-q" id="wzHead" tabindex="-1">'+esc(L.cityQ)+'</h2><p class="fine">'+esc(L.cityHint)+'</p><div class="optlist" role="radiogroup">'+
+      s.opts.concat([""]).map((o,k)=>'<label class="check"><input type="radio" name="wzcity" data-city="'+esc(o)+'"'+(wz.city===o?' checked':'')+'><span'+(o?' class="en"':'')+'>'+(o?'<bdi>'+esc(o)+'</bdi>':esc(L.cityNone))+'</span></label>').join("")+'</div>';
+  } else {
+    const field = s.type==="school" ? "schools" : "specials";
+    if(!Array.isArray(wz[field])){ wz[field] = s.opts.filter(cityMatch); saveWz(); }
+    html += '<h2 class="wz-q" id="wzHead" tabindex="-1">'+esc(s.type==="school"?L.schoolQ:L.specialQ)+'</h2><p class="fine">'+esc(L.schoolHint)+'</p><div class="optlist">'+
+      s.opts.map(o=>'<label class="check"><input type="checkbox" data-'+s.type+'="'+esc(o)+'"'+(wz[field].includes(o)?' checked':'')+'><span class="en"><bdi>'+esc(o)+'</bdi></span></label>').join("")+'</div>';
+  }
+  html += '</article>';
+  html += '<div class="wz-nav"><button type="button" class="btn ghost" id="wzBack">'+ICON.arrowBack+esc(L.back)+'</button><button type="button" class="btn" id="wzNext">'+esc(wz.i===n-1?L.finish:L.next)+ICON.arrow+'</button></div>';
+  if(s.type==="contest") html += '<button type="button" class="skip" id="wzSkip">'+esc(L.notOnBallot)+'</button>';
+  box.innerHTML = html;
+}
+function renderArea(box){
+  const L = t(); const has = !!DATA[wz.st];
+  const tbl = zipTable(wz.st);
+  let html = '<h2 class="page-h">'+esc(L.areaTitle)+'</h2><div class="area">'+
+    '<p class="place en"><bdi>'+esc(wz.zip)+' · '+(wz.county?esc(wz.county)+', ':'')+esc(STATE_NAME[wz.st])+'</bdi></p>';
+  if(has){
+    html += '<label class="lbl" for="countySel">'+esc(L.countyLbl)+'</label><div class="sel-wrap"><select class="sel en" id="countySel">'+
+      (wz.county?'':'<option value="" selected>'+esc(L.countyPick)+'</option>')+
+      tbl.counties.map(k=>'<option value="'+esc(k)+'"'+(k===wz.county?' selected':'')+'>'+esc(k)+'</option>').join("")+'</select></div>';
+    html += '<p class="fine">'+esc(L.whyDistricts)+'</p><p class="fine">'+esc(L.orderNote)+'</p>';
+    html += '<button type="button" class="btn" id="wzGo"'+(wz.county?'':' disabled')+'>'+esc(L.goBtn)+ICON.arrow+'</button>';
+  } else {
+    html += '<div class="notpub"><p>'+esc(L.notPub(STATE_NAME[wz.st]))+'</p><p>'+esc(L.notPubHint)+'</p></div>'+
+      '<div class="links"><a class="linkbtn" href="'+URLS.page(wz.st)+'" target="_blank" rel="noopener">'+ICON.out+esc(L.statePage)+'</a><a class="linkbtn" href="'+URLS.lookup+'" target="_blank" rel="noopener">'+ICON.out+esc(L.lookup)+'</a></div>';
+  }
+  html += '</div><button type="button" class="skip" id="wzReset">'+esc(L.changeZip)+'</button>';
+  box.innerHTML = html;
+}
+function renderDone(box, steps){
+  const L = t();
+  const n = Object.keys(saved).filter(k=>k.startsWith(wz.st+"|")).length;
+  const unsure = steps.filter(s=>s.type==="dist" && (wz.ans||{})[s.key]==="unsure");
+  let html = '<h2 class="page-h" id="wzHead" tabindex="-1">'+esc(L.doneTitle)+'</h2><p class="intro">'+esc(L.doneBody(n))+'</p>';
+  if(unsure.length){
+    html += '<section class="grp"><h3 class="grp-h">'+esc(L.doneUnsure)+'</h3><ul class="unsure">'+
+      unsure.map(s=>'<li><span class="en"><bdi>'+esc(s.fam)+'</bdi></span><button type="button" class="linkbtn" data-goto="'+steps.indexOf(s)+'">'+esc(L.review)+'</button></li>').join("")+
+      '</ul><div><a class="linkbtn" href="'+URLS.lookup+'" target="_blank" rel="noopener">'+ICON.out+esc(L.lookupShort)+'</a></div></section>';
+  }
+  html += '<div class="actions"><button type="button" class="btn" data-view="list">'+esc(L.seeList)+ICON.arrow+'</button><button type="button" class="btn ghost" data-goto="0">'+esc(L.review)+'</button></div>'+
+    '<p class="fine">'+esc(L.orderNote)+'</p><button type="button" class="skip" id="wzReset">'+esc(L.restart)+'</button>';
+  box.innerHTML = html;
+}
+function wzMove(delta){
+  wz.i = Math.max(-1, wz.i + delta); saveWz(); renderWalk(); renderTabs();
+  window.scrollTo(0,0);
+  const h = $("wzHead"); if(h) try{ h.focus({preventScroll:true}); }catch(e){}
+}
+
+/* ================= all races ================= */
+function renderChips(){
+  const L = t();
+  const items = [["all",L.fAll],["E",L.fE],["P",L.fP],["O",L.fO],["M",L.fM],["mine",L.fMine]];
+  $("chips").innerHTML = items.map(([k,lab])=>'<button type="button" class="fchip" data-f="'+k+'" aria-pressed="'+(filter===k)+'">'+esc(lab)+'</button>').join("");
+}
+function renderStateCard(){
+  const L = t(); const has = !!DATA[st];
+  const opts = GUIDE_STATES.map(c=>'<option value="'+c+'"'+(c===st?' selected':'')+'>'+esc(STATE_NAME[c])+(DATA[c]?'':' ('+esc(L.notPubOpt)+')')+'</option>').join("");
+  let html = '<label class="lbl" for="stateSel">'+esc(L.yourState)+'</label><div class="sel-wrap"><select class="sel" id="stateSel">'+opts+'</select></div>';
+  if(has){
+    const c = counts(st); const parts = [];
+    if(c.e) parts.push('<span class="chip s-e">'+c.e+' '+esc(L.sum.e)+'</span>');
+    if(c.p) parts.push('<span class="chip s-p">'+c.p+' '+esc(L.sum.p)+'</span>');
+    if(c.o) parts.push('<span class="chip s-o">'+c.o+' '+esc(L.sum.o)+'</span>');
+    if(c.m) parts.push('<span class="chip s-x">'+c.m+' '+esc(L.sum.m)+'</span>');
+    html += '<p class="summary">'+parts.join("")+'</p>';
+    html += '<div class="links"><a class="linkbtn" href="'+URLS.pdf(st)+'" target="_blank" rel="noopener">'+ICON.out+esc(L.pdf)+'</a><a class="linkbtn" href="'+URLS.lookup+'" target="_blank" rel="noopener">'+ICON.out+esc(L.lookup)+'</a></div>';
+  } else {
+    html += '<div class="notpub"><p>'+esc(L.notPub(STATE_NAME[st]))+'</p><p>'+esc(L.notPubHint)+'</p></div>';
+    html += '<div class="links"><a class="linkbtn" href="'+URLS.page(st)+'" target="_blank" rel="noopener">'+ICON.out+esc(L.statePage)+'</a><a class="linkbtn" href="'+URLS.lookup+'" target="_blank" rel="noopener">'+ICON.out+esc(L.lookup)+'</a></div>';
+  }
+  $("statecard").innerHTML = html;
+  $("controls").hidden = !has;
+}
+function addBtn(r){
+  const on = !!saved[r.key]; const L = t();
+  return '<button type="button" class="add" data-key="'+esc(r.key)+'" aria-pressed="'+on+'" aria-label="'+esc(on?L.rmAria(r.office):L.addAria(r.office))+'">'+(on?ICON.check:ICON.plus)+'<span>'+esc(on?L.added:L.add)+'</span></button>';
+}
+function raceCard(r){
+  const on = !!saved[r.key];
+  return '<article class="race'+(on?' on':'')+'"><div class="race-h"><h3 class="office en"><bdi>'+esc(r.office)+'</bdi></h3>'+addBtn(r)+'</div>'+(r.sec==="M"?measureBody(r):candList(r))+'</article>';
+}
+function matches(r){
+  if(filter==="M" && r.sec!=="M") return false;
+  if(filter==="mine" && !saved[r.key]) return false;
+  if(filter==="E"||filter==="P"||filter==="O"){
+    if(r.sec==="M") return false;
+    const want = filter==="E" ? "EJW" : filter;
+    if(!r.cands.some(c=>want.includes(c.status))) return false;
+  }
+  if(query){ const terms = norm(query).split(/\s+/).filter(Boolean); return terms.every(w=>r.hay.includes(w)); }
+  return true;
+}
+const LOCAL_CAP = 60;
+function renderResults(){
+  const L = t(); const box = $("results");
+  if(!DATA[st]){ box.innerHTML = '<div class="foot"><p>'+esc(L.foot)+'</p></div>'; return; }
+  const all = contests(st).filter(matches);
+  if(!all.length){ box.innerHTML = '<p class="empty">'+esc(L.nores)+'</p>'; return; }
+  const bySec = {F:[],S:[],L:[],M:[]};
+  all.forEach(r=>bySec[r.sec].push(r));
+  const secs = ["F","S","L","M"].filter(s=>bySec[s].length);
+  let html = "";
+  if(secs.length>1) html += '<nav class="jump">'+secs.map(s=>'<span><button type="button" data-jump="'+s+'">'+esc(L.sec[s])+'</button> <b>'+bySec[s].length+'</b></span>').join("")+'</nav>';
+  secs.forEach(s=>{
+    let list = bySec[s], extra = 0;
+    if(s==="L" && !query && filter==="all" && !showAllLocal && list.length>LOCAL_CAP){ extra = list.length-LOCAL_CAP; list = list.slice(0,LOCAL_CAP); }
+    html += '<section class="sec" id="sec-'+s+'"><h2 class="sec-h"><span>'+esc(L.sec[s])+'</span><small>'+esc(L.races(bySec[s].length))+'</small></h2>';
+    if(s==="L"||s==="M") html += '<p class="localnote">'+esc(L.localNote)+'</p>';
+    html += list.map(raceCard).join("");
+    if(extra) html += '<button type="button" class="more" id="moreLocal">'+esc(L.more(extra))+'</button>';
+    html += '</section>';
+  });
+  html += '<div class="foot"><p>'+esc(L.foot)+'</p></div>';
+  box.innerHTML = html;
+}
+
+/* ================= my list ================= */
+function pickGroups(r){
+  const groups = [];
+  r.cands.forEach(c=>{
+    if(c.status==="X") return;
+    let g = groups.find(x=>x.status===c.status);
+    if(!g){ g = {status:c.status, names:[]}; groups.push(g); }
+    g.names.push(c.name);
+  });
+  return groups;
+}
+function savedByState(){
+  const groups = {};
+  Object.keys(saved).forEach(k=>{
+    const r = byKey(k); if(!r) return;
+    const code = k.split("|")[0];
+    (groups[code] = groups[code] || []).push(r);
+  });
+  Object.values(groups).forEach(g=>g.sort((a,b)=>a.rank-b.rank || a.i-b.i));
+  return groups;
+}
+function shareText(){
+  const L = t(); const g = savedByState(); const lines = [];
+  Object.keys(g).forEach(code=>{
+    lines.push(L.shareHead(STATE_NAME[code]));
+    g[code].forEach(r=>{
+      if(r.sec==="M"){ const where = /statewide/.test(r.loc) ? "" : ", "+r.loc; lines.push("• "+r.office+where+" — "+L.ms[r.status]); return; }
+      const gs = pickGroups(r);
+      lines.push("• "+r.office+" — "+(gs.length ? gs.map(x=>L.st[x.status]+": "+x.names.join(", ")).join(" | ") : L.noEnd));
+    });
+    lines.push("");
+  });
+  lines.push(L.shareFoot);
+  return lines.join("\n");
+}
+function renderList(){
+  const L = t(); const g = savedByState(); const n = Object.values(g).reduce((a,b)=>a+b.length,0);
+  let html = '<h2 class="page-h">'+esc(L.listTitle)+'</h2><p class="intro">'+esc(L.listIntro)+'</p>';
+  if(!n){
+    html += '<div class="emptycard"><h3>'+esc(L.emptyTitle)+'</h3><p>'+esc(L.emptyBody)+'</p><div><button type="button" class="btn" data-view="walk">'+esc(L.goWalk)+ICON.arrow+'</button></div></div>';
+    $("listpage").innerHTML = html; return;
+  }
+  Object.keys(g).forEach(code=>{
+    html += '<section class="grp"><h3 class="grp-h">'+esc(STATE_NAME[code])+' · '+esc(L.races(g[code].length))+'</h3>';
+    g[code].forEach(r=>{
+      let body;
+      if(r.sec==="M") body = '<p class="loc en"><bdi>'+esc(r.loc)+'</bdi></p><div>'+mchip(r.status)+'</div>';
+      else {
+        const gs = pickGroups(r);
+        body = gs.length ? gs.map(x=>'<div class="pick">'+chip(x.status)+'<span class="names en">'+x.names.map(nm=>'<bdi>'+esc(nm)+'</bdi>').join(", ")+'</span></div>').join("")
+                         : '<div class="pick"><span class="chip s-x">'+esc(L.noEnd)+'</span></div>';
+      }
+      html += '<article class="race on"><div class="race-h"><h4 class="office en"><bdi>'+esc(r.office)+'</bdi></h4><button type="button" class="rm" data-rm="'+esc(r.key)+'" aria-label="'+esc(L.rmAria(r.office))+'">'+ICON.x+'</button></div>'+body+'</article>';
+    });
+    html += '</section>';
+  });
+  html += '<div class="actions"><button type="button" class="btn" id="copyBtn">'+ICON.copy+esc(L.copy)+'</button>'+
+    '<a class="btn ghost" id="waBtn" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(shareText())+'">'+ICON.chat+esc(L.wa)+'</a>'+
+    '<button type="button" class="btn danger" id="clearBtn">'+ICON.trash+esc(L.clear)+'</button></div>';
+  html += '<p class="status" id="copyStatus" role="status">'+esc(copyMsg)+'</p>';
+  if(showFallback) html += '<textarea class="fallback" id="fallback" readonly aria-label="'+esc(L.copy)+'">'+esc(shareText())+'</textarea>';
+  if(confirmOpen) html += '<div class="confirm"><p>'+esc(L.clearQ(n))+'</p><div class="actions"><button type="button" class="btn danger solid" id="yesClear">'+esc(L.yes)+'</button><button type="button" class="btn ghost" id="noClear">'+esc(L.no)+'</button></div></div>';
+  $("listpage").innerHTML = html;
+  if(showFallback){ const ta = $("fallback"); if(ta){ ta.focus(); ta.select(); } }
+}
+
+/* ================= about ================= */
+function renderAbout(){
+  const L = t();
+  const legend = ["E","P","J","O","W","X"].map(k=>'<div><dt>'+chip(k)+'</dt><dd>'+esc(L.labels[k])+'</dd></div>').join("");
+  const steps = L.plan.map(([h,b,link,lab])=>'<li><div><b>'+esc(h)+'</b><span>'+esc(b)+'</span>'+(link?'<div style="margin-top:6px"><a class="linkbtn" href="'+URLS[link]+'" target="_blank" rel="noopener">'+ICON.out+esc(lab)+'</a></div>':'')+'</div></li>').join("");
+  $("aboutpage").innerHTML =
+    '<h2 class="page-h">'+esc(L.aboutTitle)+'</h2><p class="intro">'+esc(L.aboutLead)+'</p>'+
+    '<section class="block"><h3>'+esc(L.planTitle)+'</h3><ol class="steps">'+steps+'</ol></section>'+
+    '<section class="block"><h3>'+esc(L.labelsTitle)+'</h3><dl class="legend">'+legend+
+      '<div><dt>'+mchip("Y")+mchip("N")+'</dt><dd>'+esc(L.measuresLabel)+'</dd></div></dl>'+
+      '<div><a class="linkbtn" href="'+URLS.method+'" target="_blank" rel="noopener">'+ICON.out+esc(L.methodLink)+'</a></div></section>'+
+    '<section class="block"><h3>'+esc(L.sourceTitle)+'</h3>'+L.source.map(p=>'<p class="prose">'+esc(p)+'</p>').join("")+
+      '<div><a class="linkbtn" href="'+URLS.endorsements+'" target="_blank" rel="noopener">'+ICON.out+esc(L.allGuides)+'</a></div></section>';
+}
+
+/* ================= routing ================= */
+function renderView(){
+  ["walk","browse","list","about"].forEach(v=>{ $("v-"+v).hidden = view!==v; });
+  if(view==="walk") renderWalk();
+  if(view==="browse"){ renderStateCard(); renderResults(); }
+  if(view==="list") renderList();
+  if(view==="about") renderAbout();
+  renderTabs();
+}
+function renderAll(){ renderChrome(); renderView(); }
+function go(v){
+  view = v; confirmOpen = false; copyMsg = ""; showFallback = false;
+  try{ history.replaceState(null, "", "#"+v); }catch(e){}
+  renderView(); window.scrollTo(0,0);
+}
+
+/* ================= events ================= */
+document.addEventListener("submit", e=>{
+  if(e.target.id!=="zipForm") return;
+  e.preventDefault();
+  const L = t(); const zip = ($("zipIn").value||"").replace(/\D/g,"");
+  zipVal = zip;
+  if(zip.length!==5){ zipErr = L.zipBad; renderWalk(); return; }
+  const r = lookupZip(zip);
+  if(r.err==="unknown"){ zipErr = L.zipUnknown; renderWalk(); return; }
+  if(r.err==="other"){ zipErr = L.zipOther(STATE_NAME[r.st]||r.st); renderWalk(); return; }
+  zipErr = "";
+  wz = {zip, st:r.st, county:r.county, cities:r.cities, city:null, schools:null, specials:null, ans:{}, i:-1};
+  if(DATA[r.st]){ st = r.st; store.set("sawt.state", st); }
+  saveWz(); renderWalk();
+  const h = document.querySelector("#walkpage .page-h"); if(h){ h.setAttribute("tabindex","-1"); try{ h.focus({preventScroll:true}); }catch(err){} }
+});
+document.addEventListener("click", e=>{
+  const el = e.target.closest("button, a");
+  if(!el) return;
+  const L = t();
+  if(el.dataset.view){ go(el.dataset.view); return; }
+  /* step by step */
+  if(el.id==="wzGo"){ wz.i = 0; saveWz(); wzMove(0); return; }
+  if(el.id==="wzReset"){ wz = null; zipErr = ""; saveWz(); renderWalk(); const z=$("zipIn"); if(z) z.focus(); return; }
+  if(el.dataset.goto!==undefined){ wz.i = parseInt(el.dataset.goto,10); saveWz(); wzMove(0); return; }
+  if(el.id==="wzBack"){ wzMove(-1); return; }
+  if(el.id==="wzNext" || el.id==="wzSkip"){
+    const steps = buildSteps(wz); const s = steps[wz.i];
+    if(s && s.type==="contest"){
+      if(el.id==="wzNext") saved[s.key] = 1; else delete saved[s.key];
+      persist();
+    }
+    if(s && s.type==="group"){
+      const off = new Set((wz.ans||{})[s.key]||[]);
+      s.items.forEach(c=>{ if(off.has(c.key)) delete saved[c.key]; else saved[c.key] = 1; });
+      persist();
+    }
+    wzMove(1); return;
+  }
+  if(el.dataset.dist){
+    const steps = buildSteps(wz); const s = steps[wz.i];
+    wz.ans = wz.ans || {}; wz.ans[s.key] = el.dataset.dist;
+    s.opts.forEach(o=>{ delete saved[o.key]; });
+    if(el.dataset.dist!=="none" && el.dataset.dist!=="unsure") saved[el.dataset.dist] = 1;
+    persist(); saveWz(); renderWalk(); renderTabs(); return;
+  }
+  /* all races */
+  if(el.dataset.f){ filter = el.dataset.f; showAllLocal = false; renderChips(); renderResults(); return; }
+  if(el.dataset.key){
+    const k = el.dataset.key;
+    if(saved[k]) delete saved[k]; else saved[k] = 1;
+    persist();
+    const card = el.closest(".race"); const r = byKey(k);
+    if(card && r){ card.classList.toggle("on", !!saved[k]); el.outerHTML = addBtn(r); }
+    if(filter==="mine") renderResults();
+    renderTabs(); return;
+  }
+  if(el.dataset.jump){ const s = $("sec-"+el.dataset.jump); if(s) s.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"start"}); return; }
+  if(el.id==="moreLocal"){ showAllLocal = true; renderResults(); return; }
+  /* my list */
+  if(el.dataset.rm){ delete saved[el.dataset.rm]; persist(); copyMsg = ""; renderList(); renderTabs(); return; }
+  if(el.id==="copyBtn"){
+    const text = shareText();
+    const ok = ()=>{ copyMsg = L.copied; showFallback = false; renderList(); };
+    const fail = ()=>{ copyMsg = L.copyFail; showFallback = true; renderList(); };
+    try{ if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fail); else fail(); }catch(err){ fail(); }
+    return;
+  }
+  if(el.id==="clearBtn"){ confirmOpen = true; renderList(); const y = $("yesClear"); if(y) y.focus(); return; }
+  if(el.id==="noClear"){ confirmOpen = false; renderList(); return; }
+  if(el.id==="yesClear"){ saved = {}; persist(); confirmOpen = false; copyMsg = ""; showFallback = false; renderList(); renderTabs(); return; }
+});
+document.addEventListener("change", e=>{
+  const el = e.target;
+  if(el.id==="langSel"){ lang = el.value; store.set("sawt.lang", lang); renderAll(); return; }
+  if(el.id==="stateSel"){
+    st = el.value; store.set("sawt.state", st);
+    filter = "all"; query = ""; showAllLocal = false; $("q").value = "";
+    renderChips(); renderStateCard(); renderResults(); return;
+  }
+  if(el.id==="countySel"){
+    wz.county = el.value || null; wz.city = null; wz.schools = null; wz.specials = null; wz.ans = {};
+    saveWz(); renderWalk(); return;
+  }
+  if(el.dataset.gk){
+    wz.ans = wz.ans || {}; const off = new Set(wz.ans[el.dataset.gk]||[]);
+    if(el.checked) off.delete(el.dataset.ck); else off.add(el.dataset.ck);
+    wz.ans[el.dataset.gk] = [...off]; saveWz(); return;
+  }
+  if(el.name==="wzcity"){ wz.city = el.dataset.city; saveWz(); pruneSaved(); renderTabs(); return; }
+  if(el.dataset.school!==undefined || el.dataset.special!==undefined){
+    const field = el.dataset.school!==undefined ? "schools" : "specials";
+    const v = el.dataset.school!==undefined ? el.dataset.school : el.dataset.special;
+    const set = new Set(wz[field]||[]); if(el.checked) set.add(v); else set.delete(v);
+    wz[field] = [...set]; saveWz(); pruneSaved(); renderTabs(); return;
+  }
+});
+let qTimer = null;
+$("q").addEventListener("input", e=>{ clearTimeout(qTimer); qTimer = setTimeout(()=>{ query = e.target.value.trim(); renderResults(); }, 90); });
+
+renderAll();
+})();
+</script>
